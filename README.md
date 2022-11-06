@@ -1,5 +1,13 @@
 # Backend testing course application (SUT)
 
+To run application:
+1. Make sure SDK is set to java 1.8 in Project Structure
+2. Clean Install Project
+3. Add generated (by Swagger) classes into IDEA
+4. Run mysql docker by command: docker-compose up mysql-docker-container
+5. Run services in the following order: AM, Stub, PM, UM
+
+
 A bunch of (micro) services to be tested (as the final task for the backend testing course)<br/>
 TODO:
 - Readme clean-up

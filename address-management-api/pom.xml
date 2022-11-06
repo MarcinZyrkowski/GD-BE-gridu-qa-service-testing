@@ -15,7 +15,6 @@
     </parent>
 
     <properties>
-        <spring.boot.version>2.3.5.RELEASE</spring.boot.version>
         <swagger.annotations.version>1.6.2</swagger.annotations.version>
         <jackson.databind.nullable.version>0.2.1</jackson.databind.nullable.version>
         <springfox.version>2.9.2</springfox.version>
@@ -25,7 +24,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>${spring.boot.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
