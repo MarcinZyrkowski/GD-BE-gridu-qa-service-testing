@@ -18,6 +18,13 @@
         <swagger-annotations.version>1.6.2</swagger-annotations.version>
         <springfox.version>2.9.2</springfox.version>
         <jackson.databind.nullable.version>0.2.1</jackson.databind.nullable.version>
+        <mysql-connector-java.version>8.0.16</mysql-connector-java.version>
+        <lombok.version>1.18.20</lombok.version>
+        <resteasy-client.version>4.5.8.Final</resteasy-client.version>
+        <resteasy-multipart-provider.version>4.5.8.Final</resteasy-multipart-provider.version>
+        <resteasy-jackson-provider.version>3.13.2.Final</resteasy-jackson-provider.version>
+        <resteasy-jaxrs.version>3.13.2.Final</resteasy-jaxrs.version>
+        <jsr305.version>3.0.2</jsr305.version>
     </properties>
 
     <modules>
@@ -64,6 +71,41 @@
                         <groupId>com.fasterxml.jackson.core</groupId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector-java.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-client</artifactId>
+                <version>${resteasy-client.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-multipart-provider</artifactId>
+                <version>${resteasy-multipart-provider.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-jackson-provider</artifactId>
+                <version>${resteasy-jackson-provider.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-jaxrs</artifactId>
+                <version>${resteasy-jaxrs.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.findbugs</groupId>
+                <artifactId>jsr305</artifactId>
+                <version>${jsr305.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
