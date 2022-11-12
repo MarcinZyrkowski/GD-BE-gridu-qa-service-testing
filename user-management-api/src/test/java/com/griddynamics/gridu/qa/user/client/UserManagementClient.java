@@ -1,13 +1,13 @@
-package user_management_api.client;
+package com.griddynamics.gridu.qa.user.client;
 
 import com.griddynamics.gridu.qa.user.CreateUserRequest;
 import com.griddynamics.gridu.qa.user.CreateUserResponse;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
-import user_management_api.Environment;
-import user_management_api.tests.UserManagementBaseTest;
+import com.griddynamics.gridu.qa.user.Environment;
+import com.griddynamics.gridu.qa.user.tests.UserManagementBaseTest;
 
-import static user_management_api.Environment.SCHEMA_DERIVED_CLASSES_PATH;
+import static com.griddynamics.gridu.qa.user.Environment.SCHEMA_DERIVED_CLASSES_PATH;
 
 public class UserManagementClient extends WebServiceGatewaySupport {
 

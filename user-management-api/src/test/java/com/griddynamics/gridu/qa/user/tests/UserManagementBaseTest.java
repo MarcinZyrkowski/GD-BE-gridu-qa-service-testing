@@ -1,4 +1,4 @@
-package user_management_api.tests;
+package com.griddynamics.gridu.qa.user.tests;
 
 public class UserManagementBaseTest {
 

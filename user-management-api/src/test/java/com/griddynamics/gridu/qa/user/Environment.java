@@ -1,4 +1,4 @@
-package user_management_api;
+package com.griddynamics.gridu.qa.user;
 
 public class Environment {
 
