@@ -2,10 +2,10 @@ package com.griddynamics.gridu.qa.user.client;
 
 import com.griddynamics.gridu.qa.user.CreateUserRequest;
 import com.griddynamics.gridu.qa.user.CreateUserResponse;
-import org.springframework.oxm.jaxb.Jaxb2Marshaller;
-import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import com.griddynamics.gridu.qa.user.Environment;
 import com.griddynamics.gridu.qa.user.tests.UserManagementBaseTest;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 
 import static com.griddynamics.gridu.qa.user.Environment.SCHEMA_DERIVED_CLASSES_PATH;
 
