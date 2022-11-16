@@ -13,7 +13,6 @@ import static com.griddynamics.gridu.qa.user.utils.EnumUtils.getRandomElement;
 public class CreateNewUserTestData {
 
     private static LongRange monthsRange = new LongRange(1, 12);
-
     protected final static ObjectFactory OBJECT_FACTORY = new ObjectFactory();
     protected final static LocalDate BIRTHDAY =
             LocalDate.of(2000, getRandomElement(Month.class), (int) (long) monthsRange.randomLong());
@@ -35,14 +34,16 @@ public class CreateNewUserTestData {
         CreateUserRequest createUserRequest = OBJECT_FACTORY.createCreateUserRequest();
         createUserRequest.setName(NAME);
         createUserRequest.setLastName(SURNAME);
-        createUserRequest.setLastName(EMAIL);
+        createUserRequest.setEmail(EMAIL);
         createUserRequest.setBirthday(DatatypeFactory.newInstance().newXMLGregorianCalendar(BIRTHDAY.toString()));
 
         CreateUserRequest.Addresses addresses = OBJECT_FACTORY.createCreateUserRequestAddresses();
         addresses.getAddress().add(prepareValidNewAddress());
+        createUserRequest.setAddresses(addresses);
 
         CreateUserRequest.Payments payments = OBJECT_FACTORY.createCreateUserRequestPayments();
         payments.getPayment().add(prepareValidNewPayment());
+        createUserRequest.setPayments(payments);
 
         return createUserRequest;
     }
