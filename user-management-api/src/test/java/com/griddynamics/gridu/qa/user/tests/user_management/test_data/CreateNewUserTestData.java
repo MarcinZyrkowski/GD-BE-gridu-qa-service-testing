@@ -7,14 +7,16 @@ import javax.xml.datatype.DatatypeFactory;
 import java.time.LocalDate;
 import java.time.Month;
 
+import static com.griddynamics.gridu.qa.user.utils.EnumUtils.getRandomElement;
+
 public class CreateNewUserTestData {
 
     protected final static ObjectFactory OBJECT_FACTORY = new ObjectFactory();
-    protected final static LocalDate BIRTHDAY = LocalDate.of(2000, Month.JANUARY, 1);
+    protected final static LocalDate BIRTHDAY = LocalDate.of(2000, getRandomElement(Month.class), 1);
     protected final static String NAME = "John";
     protected final static String SURNAME = "Doe";
     protected final static String EMAIL = "john.doe@email.com";
-    protected final static State STATE = State.AE;
+    protected final static State STATE = getRandomElement(State.class);
     protected final static String CITY = "city";
     protected final static String ZIP = "zip";
     protected final static String LINE_1 = "line1";
@@ -41,7 +43,7 @@ public class CreateNewUserTestData {
         return createUserRequest;
     }
 
-    public static NewAddress prepareValidNewAddress(){
+    public static NewAddress prepareValidNewAddress() {
         NewAddress address = OBJECT_FACTORY.createNewAddress();
         address.setState(STATE);
         address.setCity(CITY);
@@ -51,7 +53,7 @@ public class CreateNewUserTestData {
         return address;
     }
 
-    public static NewPayment prepareValidNewPayment(){
+    public static NewPayment prepareValidNewPayment() {
         NewPayment payment = OBJECT_FACTORY.createNewPayment();
         payment.setCardNumber(CARD_NUMBER);
         payment.setExpiryYear(EXPIRY_YEAR);

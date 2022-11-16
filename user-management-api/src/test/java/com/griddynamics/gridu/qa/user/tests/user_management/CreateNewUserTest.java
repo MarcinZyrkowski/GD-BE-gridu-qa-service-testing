@@ -1,6 +1,8 @@
 package com.griddynamics.gridu.qa.user.tests.user_management;
 
+import com.griddynamics.gridu.qa.user.State;
 import com.griddynamics.gridu.qa.user.tests.UserManagementBaseTest;
+import com.griddynamics.gridu.qa.user.utils.EnumUtils;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
@@ -22,6 +24,7 @@ public class CreateNewUserTest extends UserManagementBaseTest {
     @Description("Second test description")
     public void dummyTest2(){
         System.out.println("passed");
+        System.out.println(EnumUtils.getRandomElement(State.class));
     }
 
 }
