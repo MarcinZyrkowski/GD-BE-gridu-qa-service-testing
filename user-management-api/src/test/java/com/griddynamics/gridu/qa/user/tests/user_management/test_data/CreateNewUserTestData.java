@@ -1,7 +1,7 @@
 package com.griddynamics.gridu.qa.user.tests.user_management.test_data;
 
 import com.griddynamics.gridu.qa.user.*;
-import com.griddynamics.gridu.qa.user.utils.LongRange;
+import com.griddynamics.gridu.qa.user.utils.NumberRange;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
@@ -12,10 +12,10 @@ import static com.griddynamics.gridu.qa.user.utils.EnumUtils.getRandomElement;
 
 public class CreateNewUserTestData {
 
-    private static LongRange monthsRange = new LongRange(1, 12);
+    private static final NumberRange monthsRange = new NumberRange(1, 12);
     protected final static ObjectFactory OBJECT_FACTORY = new ObjectFactory();
     protected final static LocalDate BIRTHDAY =
-            LocalDate.of(2000, getRandomElement(Month.class), (int) (long) monthsRange.randomLong());
+            LocalDate.of(2000, getRandomElement(Month.class), monthsRange.randomInt());
     protected final static String NAME = "John";
     protected final static String SURNAME = "Doe";
     protected final static String EMAIL = "john.doe@email.com";

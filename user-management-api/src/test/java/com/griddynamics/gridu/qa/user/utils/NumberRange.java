@@ -5,13 +5,17 @@ import lombok.AllArgsConstructor;
 import java.util.Random;
 
 @AllArgsConstructor
-public class LongRange {
+public class NumberRange {
 
     private int minRange;
     private int maxRange;
 
+    public Integer randomInt() {
+        return new Random().nextInt(maxRange - minRange) + minRange;
+    }
+
     public Long randomLong() {
-        return (long) new Random().nextInt(maxRange - minRange) + minRange;
+        return (long) randomInt();
     }
 
 }
