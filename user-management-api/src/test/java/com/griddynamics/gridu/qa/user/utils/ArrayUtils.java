@@ -6,7 +6,6 @@ import java.util.Random;
 public class ArrayUtils {
 
     public static <E> E getRandomElement(List<E> list){
-
         if(list.isEmpty()){
             return null;
         }

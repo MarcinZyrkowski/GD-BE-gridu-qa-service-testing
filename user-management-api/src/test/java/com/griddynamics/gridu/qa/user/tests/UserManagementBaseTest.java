@@ -5,7 +5,7 @@ import org.testng.annotations.BeforeSuite;
 
 public class UserManagementBaseTest {
 
-    public static final int USER_MANAGEMENT_PORT = 9090;
+    public static final int USER_MANAGEMENT_PORT = 8080;
     protected UserManagementClient userManagementClient;
 
     @BeforeSuite

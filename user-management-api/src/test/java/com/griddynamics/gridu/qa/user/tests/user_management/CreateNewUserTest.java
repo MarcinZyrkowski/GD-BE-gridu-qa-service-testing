@@ -1,7 +1,9 @@
 package com.griddynamics.gridu.qa.user.tests.user_management;
 
 import com.griddynamics.gridu.qa.user.CreateUserRequest;
+import com.griddynamics.gridu.qa.user.CreateUserResponse;
 import com.griddynamics.gridu.qa.user.State;
+import com.griddynamics.gridu.qa.user.steps.UserManagementSteps;
 import com.griddynamics.gridu.qa.user.tests.UserManagementBaseTest;
 import com.griddynamics.gridu.qa.user.utils.EnumUtils;
 import io.qameta.allure.Description;
@@ -23,7 +25,9 @@ public class CreateNewUserTest extends UserManagementBaseTest {
     public void createNewUser() throws DatatypeConfigurationException {
 
         CreateUserRequest createUserRequest = prepareValidCreateUserRequest();
-        userManagementClient.createUser(createUserRequest);
+        CreateUserResponse createUserResponse = userManagementClient.createUser(createUserRequest);
+        UserManagementSteps.verifyBasicUserData(createUserRequest, createUserResponse);
+        UserManagementSteps.verifyAddressesList(createUserRequest, createUserResponse);
     }
 
     @Test(description = "Second dummy test")
