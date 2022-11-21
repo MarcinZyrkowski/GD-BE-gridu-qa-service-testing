@@ -9,7 +9,7 @@ public class UserManagementE2EBaseTest {
     protected UserManagementClient userManagementClient;
 
     @BeforeSuite
-    public void setUp(){
+    public void setUp() {
         userManagementClient = new UserManagementClient();
     }
 

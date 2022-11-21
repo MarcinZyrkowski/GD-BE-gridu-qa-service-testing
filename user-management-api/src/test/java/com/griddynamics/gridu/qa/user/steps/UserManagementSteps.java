@@ -13,8 +13,7 @@ public
 class UserManagementSteps {
 
     @Step("Verify user is created correctly")
-    public static
-    void verifyBasicUserData(CreateUserRequest createUserRequest, CreateUserResponse createUserResponse) {
+    public static void verifyBasicUserData(CreateUserRequest createUserRequest, CreateUserResponse createUserResponse) {
         assertThat(createUserResponse)
                 .as("Response should not be null")
                 .isNotNull();
@@ -49,8 +48,7 @@ class UserManagementSteps {
     }
 
     @Step("Verify Addresses list")
-    public static
-    void verifyAddressesList(CreateUserRequest createUserRequest, CreateUserResponse createUserResponse) {
+    public static void verifyAddressesList(CreateUserRequest createUserRequest, CreateUserResponse createUserResponse) {
         createUserResponse.getUserDetails().getAddresses().getAddress()
                 .forEach(address -> assertThat(address.getId()).isNotNull());
 

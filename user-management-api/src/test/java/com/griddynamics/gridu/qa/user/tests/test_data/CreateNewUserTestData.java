@@ -13,13 +13,7 @@ import static com.griddynamics.gridu.qa.user.utils.EnumUtils.getRandomElement;
 public
 class CreateNewUserTestData {
 
-    private static final NumberRange monthsRange = new NumberRange(1, 12);
     protected final static ObjectFactory OBJECT_FACTORY = new ObjectFactory();
-    private static final int DIGITS_NUMBER_IN_CARD_NUMBER = 16;
-    private static final int DIGITS_IN_CVV = 3;
-
-    protected final static LocalDate BIRTHDAY =
-            LocalDate.of(2000, getRandomElement(Month.class), monthsRange.randomInt());
     protected final static String NAME = "John";
     protected final static String SURNAME = "Doe";
     protected final static String EMAIL = "john.doe@email.com";
@@ -28,10 +22,15 @@ class CreateNewUserTestData {
     protected final static String ZIP = "zip";
     protected final static String LINE_1 = "line1";
     protected final static String LINE_2 = "line2";
-    protected final static String CARD_NUMBER = createRandomDigitSequence(DIGITS_NUMBER_IN_CARD_NUMBER);
     protected final static int EXPIRY_YEAR = LocalDate.now().plusYears(1).getYear();
     protected final static int EXPIRY_MONTH = LocalDate.now().plusYears(1).getMonthValue();
     protected final static String CARD_HOLDER = NAME + " " + SURNAME;
+    private static final NumberRange monthsRange = new NumberRange(1, 12);
+    protected final static LocalDate BIRTHDAY =
+            LocalDate.of(2000, getRandomElement(Month.class), monthsRange.randomInt());
+    private static final int DIGITS_NUMBER_IN_CARD_NUMBER = 16;
+    protected final static String CARD_NUMBER = createRandomDigitSequence(DIGITS_NUMBER_IN_CARD_NUMBER);
+    private static final int DIGITS_IN_CVV = 3;
     protected final static String CVV = createRandomDigitSequence(DIGITS_IN_CVV);
 
     public static CreateUserRequest prepareBasicCreateUserRequestData() throws DatatypeConfigurationException {

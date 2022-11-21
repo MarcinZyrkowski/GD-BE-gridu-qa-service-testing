@@ -6,7 +6,6 @@ import org.testng.annotations.DataProvider;
 import javax.xml.datatype.DatatypeConfigurationException;
 
 import static com.griddynamics.gridu.qa.user.tests.test_data.CreateNewUserTestData.*;
-import static com.griddynamics.gridu.qa.user.tests.test_data.CreateNewUserTestData.prepareNewAddress;
 
 public class CreateNewUserDataProvider {
 
