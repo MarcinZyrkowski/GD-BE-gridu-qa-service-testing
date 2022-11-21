@@ -3,7 +3,7 @@ package com.griddynamics.gridu.qa.user.client;
 import com.griddynamics.gridu.qa.user.CreateUserRequest;
 import com.griddynamics.gridu.qa.user.CreateUserResponse;
 import com.griddynamics.gridu.qa.user.Environment;
-import com.griddynamics.gridu.qa.user.tests.UserManagementBaseTest;
+import com.griddynamics.gridu.qa.user.tests.e2e.UserManagementE2EBaseTest;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 
@@ -15,7 +15,7 @@ public class UserManagementClient extends WebServiceGatewaySupport {
         Jaxb2Marshaller marshaller = marshaller();
         this.setMarshaller(marshaller);
         this.setUnmarshaller(marshaller);
-        this.setDefaultUri(Environment.LOCAL_HOST + UserManagementBaseTest.USER_MANAGEMENT_PORT + "/ws");
+        this.setDefaultUri(Environment.LOCAL_HOST + UserManagementE2EBaseTest.USER_MANAGEMENT_PORT + "/ws");
     }
 
     public CreateUserResponse createUser(CreateUserRequest request) {
