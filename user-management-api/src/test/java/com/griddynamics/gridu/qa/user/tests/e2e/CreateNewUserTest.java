@@ -23,6 +23,7 @@ public class CreateNewUserTest extends UserManagementE2EBaseTest {
 
         UserManagementSteps.verifyBasicUserData(createUserRequest, createUserResponse);
         UserManagementSteps.verifyAddressesList(createUserRequest, createUserResponse);
+        UserManagementSteps.verifyPaymentsList(createUserRequest, createUserResponse);
     }
 
     @Test(description = "Second dummy test")
