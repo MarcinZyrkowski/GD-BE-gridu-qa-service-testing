@@ -21,9 +21,6 @@ class UserManagementSteps {
         assertThat(createUserResponse.getUserDetails())
                 .as("User Details should not be null")
                 .isNotNull();
-        assertThat(createUserResponse.getUserDetails())
-                .as("User Details should not be null")
-                .isNotNull();
         assertThat(createUserResponse.getUserDetails().getId())
                 .as("User Details id should not be null")
                 .isNotNull();
@@ -108,6 +105,22 @@ class UserManagementSteps {
                 .filter(existingPayment -> existingPayment.getCardholder().equals(newPayment.getCardholder()))
                 .filter(existingPayment -> existingPayment.getCvv().equals(newPayment.getCvv()))
                 .findAny();
+    }
+
+    @Step("Verify created user's details")
+    public static void verifyCreatedUserDetails(CreateUserResponse createUserResponse, GetUserDetailsResponse getUserDetailsResponse) {
+        assertThat(getUserDetailsResponse)
+                .as("Response should not be null")
+                .isNotNull();
+
+        assertThat(getUserDetailsResponse.getUserDetails())
+                .as("User details should not be null")
+                .isNotNull();
+
+        assertThat(getUserDetailsResponse.getUserDetails())
+                .as("User details response should be the same as in create user details response")
+                .usingRecursiveComparison()
+                .isEqualTo(createUserResponse.getUserDetails());
     }
 
 }

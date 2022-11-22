@@ -1,7 +1,6 @@
 package com.griddynamics.gridu.qa.user.client;
 
-import com.griddynamics.gridu.qa.user.CreateUserRequest;
-import com.griddynamics.gridu.qa.user.CreateUserResponse;
+import com.griddynamics.gridu.qa.user.*;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 
@@ -26,6 +25,18 @@ public class UserManagementClient extends WebServiceGatewaySupport {
 
     public CreateUserResponse createUser(CreateUserRequest request) {
         return (CreateUserResponse) getWebServiceTemplate().marshalSendAndReceive(request);
+    }
+
+    public GetUserDetailsResponse getUserDetails(GetUserDetailsRequest request){
+        return (GetUserDetailsResponse) getWebServiceTemplate().marshalSendAndReceive(request);
+    }
+
+    public UpdateUserResponse updateUser(UpdateUserRequest request){
+        return (UpdateUserResponse) getWebServiceTemplate().marshalSendAndReceive(request);
+    }
+
+    public DeleteUserResponse deleteUser(DeleteUserRequest request){
+        return (DeleteUserResponse) getWebServiceTemplate().marshalSendAndReceive(request);
     }
 
 }
