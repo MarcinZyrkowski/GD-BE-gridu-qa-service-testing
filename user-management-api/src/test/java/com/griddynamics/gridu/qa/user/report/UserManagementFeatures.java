@@ -15,5 +15,7 @@ public class UserManagementFeatures {
     public static final String PBI_GET_USER_DETAILS = "[PBI] user's details";
     public static final String TC_GET_USERS_DETAILS = "[TC] user's details - get user's details";
 
+    public static final String PBI_UPDATE_USER = "[PBI] update user";
+    public static final String TC_UPDATE_USER = "[TC] update user - update user basic data";
 
 }

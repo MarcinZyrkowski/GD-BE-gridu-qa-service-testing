@@ -1,16 +1,16 @@
 package com.griddynamics.gridu.qa.user.tests.test_data.data_provides;
 
 import com.griddynamics.gridu.qa.user.CreateUserRequest;
+import lombok.SneakyThrows;
 import org.testng.annotations.DataProvider;
-
-import javax.xml.datatype.DatatypeConfigurationException;
 
 import static com.griddynamics.gridu.qa.user.tests.test_data.CreateNewUserTestData.*;
 
 public class CreateNewUserDataProvider {
 
     @DataProvider
-    public static Object[][] validUserWithAddressesAndPayments() throws DatatypeConfigurationException {
+    @SneakyThrows
+    public static Object[][] validUserWithAddressesAndPayments() {
         CreateUserRequest createUserRequest = prepareBasicCreateUserRequestData();
 
         CreateUserRequest.Addresses addresses = prepareAddresses();

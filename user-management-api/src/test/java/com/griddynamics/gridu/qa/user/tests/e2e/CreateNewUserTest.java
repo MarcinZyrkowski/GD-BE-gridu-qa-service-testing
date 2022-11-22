@@ -22,8 +22,10 @@ public class CreateNewUserTest extends UserManagementE2EBaseTest {
         CreateUserResponse createUserResponse = userManagementClient.createUser(createUserRequest);
 
         verifyBasicUserData(createUserRequest, createUserResponse);
-        verifyAddressesList(createUserRequest, createUserResponse);
-        verifyPaymentsList(createUserRequest, createUserResponse);
+        verifyAddressesList(createUserResponse.getUserDetails().getAddresses().getAddress(),
+                createUserRequest.getAddresses().getAddress());
+        verifyPaymentsList(createUserResponse.getUserDetails().getPayments().getPayment(),
+                createUserRequest.getPayments().getPayment());
     }
 
 }

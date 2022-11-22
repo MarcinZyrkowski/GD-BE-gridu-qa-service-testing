@@ -2,11 +2,14 @@ package com.griddynamics.gridu.qa.user.tests.test_data;
 
 import com.griddynamics.gridu.qa.user.*;
 import com.griddynamics.gridu.qa.user.utils.NumberRange;
+import lombok.SneakyThrows;
+import org.apache.james.mime4j.dom.datetime.DateTime;
 
-import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.TimeZone;
 
 import static com.griddynamics.gridu.qa.user.utils.EnumUtils.getRandomElement;
 
@@ -15,8 +18,11 @@ class CreateNewUserTestData {
 
     protected final static ObjectFactory OBJECT_FACTORY = new ObjectFactory();
     protected final static String NAME = "John";
+    protected final static String NAME_2 = "Richard";
     protected final static String SURNAME = "Doe";
+    protected final static String SURNAME_2 = "Roe";
     protected final static String EMAIL = "john.doe@email.com";
+    protected final static String EMAIL_2 = "richard.roe@email.com";
     protected final static State STATE = getRandomElement(State.class);
     protected final static String CITY = "city";
     protected final static String ZIP = "zip";
@@ -28,18 +34,38 @@ class CreateNewUserTestData {
     private static final NumberRange monthsRange = new NumberRange(1, 12);
     protected final static LocalDate BIRTHDAY =
             LocalDate.of(2000, getRandomElement(Month.class), monthsRange.randomInt());
+    protected final static LocalDate BIRTHDAY_2 =
+            LocalDate.of(2000, getRandomElement(Month.class), monthsRange.randomInt());
     private static final int DIGITS_NUMBER_IN_CARD_NUMBER = 16;
     protected final static String CARD_NUMBER = createRandomDigitSequence(DIGITS_NUMBER_IN_CARD_NUMBER);
     private static final int DIGITS_IN_CVV = 3;
     protected final static String CVV = createRandomDigitSequence(DIGITS_IN_CVV);
 
-    public static CreateUserRequest prepareBasicCreateUserRequestData() throws DatatypeConfigurationException {
+    // timezone is defined as number of minutes added from -14*60 to 14*60 (-14h to +14h)
+    protected static final int TIMEZONE_UTC_PLUS_ONE = 60;
+
+    @SneakyThrows
+    public static CreateUserRequest prepareBasicCreateUserRequestData() {
         CreateUserRequest createUserRequest = OBJECT_FACTORY.createCreateUserRequest();
         createUserRequest.setName(NAME);
         createUserRequest.setLastName(SURNAME);
         createUserRequest.setEmail(EMAIL);
-        createUserRequest.setBirthday(DatatypeFactory.newInstance().newXMLGregorianCalendar(BIRTHDAY.toString()));
+        XMLGregorianCalendar birthday = DatatypeFactory.newInstance().newXMLGregorianCalendar(BIRTHDAY.toString());
+        birthday.setTimezone(TIMEZONE_UTC_PLUS_ONE);
+        createUserRequest.setBirthday(birthday);
         return createUserRequest;
+    }
+
+    @SneakyThrows
+    public static UserDetails prepareOtherUserDetails() {
+        UserDetails userDetails = new UserDetails();
+        userDetails.setName(NAME_2);
+        userDetails.setLastName(SURNAME_2);
+        userDetails.setEmail(EMAIL_2);
+        XMLGregorianCalendar birthday = DatatypeFactory.newInstance().newXMLGregorianCalendar(BIRTHDAY_2.toString());
+        birthday.setTimezone(TIMEZONE_UTC_PLUS_ONE);
+        userDetails.setBirthday(birthday);
+        return userDetails;
     }
 
     public static CreateUserRequest.Addresses prepareAddresses() {

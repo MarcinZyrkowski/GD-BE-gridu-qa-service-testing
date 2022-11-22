@@ -3,8 +3,6 @@ package com.griddynamics.gridu.qa.user.steps;
 import com.griddynamics.gridu.qa.user.*;
 import io.qameta.allure.Step;
 
-import javax.xml.datatype.XMLGregorianCalendar;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,34 +32,26 @@ class UserManagementSteps {
                 .as("User Details email should be as in request")
                 .isEqualTo(createUserRequest.getEmail());
 
-        XMLGregorianCalendar birthdayResponse = createUserResponse.getUserDetails().getBirthday();
-        XMLGregorianCalendar birthdayRequest = createUserRequest.getBirthday();
-        LocalDate birthdayResponseLocalDate =
-                LocalDate.of(birthdayRequest.getYear(), birthdayResponse.getMonth(), birthdayRequest.getDay());
-        LocalDate birthdayRequestLocalDate =
-                LocalDate.of(birthdayRequest.getYear(), birthdayRequest.getMonth(), birthdayRequest.getDay());
-        assertThat(birthdayResponseLocalDate)
+        assertThat(createUserResponse.getUserDetails().getBirthday())
                 .as("User Details birthday should be as in request")
-                .isEqualTo(birthdayRequestLocalDate);
+                .isEqualTo(createUserRequest.getBirthday());
     }
 
     @Step("Verify Addresses list")
-    public static void verifyAddressesList(CreateUserRequest createUserRequest, CreateUserResponse createUserResponse) {
-        List<ExistingAddress> existingAddressList = createUserResponse.getUserDetails().getAddresses().getAddress();
-        existingAddressList
-                .forEach(address -> assertThat(address.getId())
+    public static void verifyAddressesList(List<ExistingAddress> actualExistingAddressList,
+            List<NewAddress> expectedNewAddressList) {
+        actualExistingAddressList.forEach(address -> assertThat(address.getId())
                         .as("Created address should have generated id value")
                         .isNotNull());
 
-        createUserRequest.getAddresses().getAddress()
-                .forEach(address ->
-                        assertThat(findExistingAddressByNewAddress(existingAddressList, address).isPresent())
+        expectedNewAddressList.forEach(address ->
+                        assertThat(findExistingAddressByNewAddress(actualExistingAddressList, address).isPresent())
                                 .as("Existing address corresponding to new address should be found")
                                 .isTrue());
 
-        assertThat(createUserRequest.getAddresses().getAddress().size())
+        assertThat(actualExistingAddressList.size())
                 .as("New address list size and Existing address list size should be the same")
-                .isEqualTo(existingAddressList.size());
+                .isEqualTo(expectedNewAddressList.size());
     }
 
     @Step("Find corresponding existing new address")
@@ -77,22 +67,21 @@ class UserManagementSteps {
     }
 
     @Step("Verify Payment list")
-    public static void verifyPaymentsList(CreateUserRequest createUserRequest, CreateUserResponse createUserResponse) {
-        List<ExistingPayment> existingPaymentsList = createUserResponse.getUserDetails().getPayments().getPayment();;
-        existingPaymentsList
-                .forEach(payment -> assertThat(payment.getId())
-                        .as("Created payment should have generated id value")
-                        .isNotNull());
+    public static void verifyPaymentsList(List<ExistingPayment> actualExistingPaymentsList,
+            List<NewPayment> expectedNewPaymentsList) {
 
-        createUserRequest.getPayments().getPayment()
-                .forEach(payment ->
-                        assertThat(findExistingPaymentByNewPayment(existingPaymentsList, payment).isPresent())
-                                .as("Existing payment corresponding to new payment should be found")
-                                .isTrue());
+        actualExistingPaymentsList.forEach(payment -> assertThat(payment.getId())
+                .as("Created payment should have generated id value")
+                .isNotNull());
 
-        assertThat(createUserRequest.getPayments().getPayment().size())
+        expectedNewPaymentsList.forEach(payment ->
+                assertThat(findExistingPaymentByNewPayment(actualExistingPaymentsList, payment).isPresent())
+                        .as("Existing payment corresponding to new payment should be found")
+                        .isTrue());
+
+        assertThat(actualExistingPaymentsList.size() )
                 .as("New payment list size and Existing payment list size should be the same")
-                .isEqualTo(existingPaymentsList.size());
+                .isEqualTo(expectedNewPaymentsList.size());
     }
 
     @Step("Find corresponding existing new payment")
@@ -108,7 +97,8 @@ class UserManagementSteps {
     }
 
     @Step("Verify created user's details")
-    public static void verifyCreatedUserDetails(CreateUserResponse createUserResponse, GetUserDetailsResponse getUserDetailsResponse) {
+    public static void verifyCreatedUserDetails(CreateUserResponse createUserResponse,
+            GetUserDetailsResponse getUserDetailsResponse) {
         assertThat(getUserDetailsResponse)
                 .as("Response should not be null")
                 .isNotNull();
@@ -117,10 +107,40 @@ class UserManagementSteps {
                 .as("User details should not be null")
                 .isNotNull();
 
-        assertThat(getUserDetailsResponse.getUserDetails())
-                .as("User details response should be the same as in create user details response")
-                .usingRecursiveComparison()
-                .isEqualTo(createUserResponse.getUserDetails());
+        compareUserDetails(getUserDetailsResponse.getUserDetails(), createUserResponse.getUserDetails());
+    }
+
+    @Step("Verify updated user's details")
+    public static void verifyUpdatedUserDetails(UpdateUserRequest updateUserRequest,
+            UpdateUserResponse updateUserResponse) {
+        assertThat(updateUserResponse)
+                .as("Response should not be null")
+                .isNotNull();
+
+        assertThat(updateUserResponse.getUserDetails())
+                .as("User details should not be null")
+                .isNotNull();
+
+        compareUserDetails(updateUserResponse.getUserDetails(), updateUserRequest.getUserDetails());
+    }
+
+    @Step("Compare user's details to expected")
+    public static void compareUserDetails(UserDetails userDetailsActual, UserDetails userDetailsExpected) {
+        assertThat(userDetailsActual.getName())
+                .as("Name should be the same as expected")
+                .isEqualTo(userDetailsExpected.getName());
+
+        assertThat(userDetailsActual.getLastName())
+                .as("Last name should be the same as expected")
+                .isEqualTo(userDetailsExpected.getLastName());
+
+        assertThat(userDetailsActual.getEmail())
+                .as("Email should be the same as expected")
+                .isEqualTo(userDetailsExpected.getEmail());
+
+        assertThat(userDetailsActual.getBirthday())
+                .as("Birthday should be the same as expected")
+                .isEqualTo(userDetailsExpected.getBirthday());
     }
 
 }
