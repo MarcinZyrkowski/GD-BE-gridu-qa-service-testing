@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="E2E Tests">
+<suite name="full Tests">
 
     <suite-files>
         <suite-file path="e2e.xml"/>

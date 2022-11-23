@@ -10,12 +10,6 @@ import static com.griddynamics.gridu.qa.user.tests.e2e.UserManagementE2EBaseTest
 
 public class UserManagementClient extends WebServiceGatewaySupport {
 
-    private Jaxb2Marshaller marshaller() {
-        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-        marshaller.setContextPath(SCHEMA_DERIVED_CLASSES_PATH);
-        return marshaller;
-    }
-
     public UserManagementClient() {
         Jaxb2Marshaller marshaller = marshaller();
         this.setMarshaller(marshaller);
@@ -23,19 +17,25 @@ public class UserManagementClient extends WebServiceGatewaySupport {
         this.setDefaultUri(LOCAL_HOST + USER_MANAGEMENT_PORT + "/ws");
     }
 
+    private Jaxb2Marshaller marshaller() {
+        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+        marshaller.setContextPath(SCHEMA_DERIVED_CLASSES_PATH);
+        return marshaller;
+    }
+
     public CreateUserResponse createUser(CreateUserRequest request) {
         return (CreateUserResponse) getWebServiceTemplate().marshalSendAndReceive(request);
     }
 
-    public GetUserDetailsResponse getUserDetails(GetUserDetailsRequest request){
+    public GetUserDetailsResponse getUserDetails(GetUserDetailsRequest request) {
         return (GetUserDetailsResponse) getWebServiceTemplate().marshalSendAndReceive(request);
     }
 
-    public UpdateUserResponse updateUser(UpdateUserRequest request){
+    public UpdateUserResponse updateUser(UpdateUserRequest request) {
         return (UpdateUserResponse) getWebServiceTemplate().marshalSendAndReceive(request);
     }
 
-    public DeleteUserResponse deleteUser(DeleteUserRequest request){
+    public DeleteUserResponse deleteUser(DeleteUserRequest request) {
         return (DeleteUserResponse) getWebServiceTemplate().marshalSendAndReceive(request);
     }
 

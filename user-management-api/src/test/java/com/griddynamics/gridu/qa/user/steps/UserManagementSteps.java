@@ -41,13 +41,13 @@ class UserManagementSteps {
     public static void verifyAddressesList(List<ExistingAddress> actualExistingAddressList,
             List<NewAddress> expectedNewAddressList) {
         actualExistingAddressList.forEach(address -> assertThat(address.getId())
-                        .as("Created address should have generated id value")
-                        .isNotNull());
+                .as("Created address should have generated id value")
+                .isNotNull());
 
         expectedNewAddressList.forEach(address ->
-                        assertThat(findExistingAddressByNewAddress(actualExistingAddressList, address).isPresent())
-                                .as("Existing address corresponding to new address should be found")
-                                .isTrue());
+                assertThat(findExistingAddressByNewAddress(actualExistingAddressList, address).isPresent())
+                        .as("Existing address corresponding to new address should be found")
+                        .isTrue());
 
         assertThat(actualExistingAddressList.size())
                 .as("New address list size and Existing address list size should be the same")
@@ -79,7 +79,7 @@ class UserManagementSteps {
                         .as("Existing payment corresponding to new payment should be found")
                         .isTrue());
 
-        assertThat(actualExistingPaymentsList.size() )
+        assertThat(actualExistingPaymentsList.size())
                 .as("New payment list size and Existing payment list size should be the same")
                 .isEqualTo(expectedNewPaymentsList.size());
     }
@@ -107,7 +107,7 @@ class UserManagementSteps {
                 .as("User details should not be null")
                 .isNotNull();
 
-        compareUserDetails(getUserDetailsResponse.getUserDetails(), createUserResponse.getUserDetails());
+        verifyBasicUsersDetails(getUserDetailsResponse.getUserDetails(), createUserResponse.getUserDetails());
     }
 
     @Step("Verify updated user's details")
@@ -121,11 +121,11 @@ class UserManagementSteps {
                 .as("User details should not be null")
                 .isNotNull();
 
-        compareUserDetails(updateUserResponse.getUserDetails(), updateUserRequest.getUserDetails());
+        verifyBasicUsersDetails(updateUserResponse.getUserDetails(), updateUserRequest.getUserDetails());
     }
 
     @Step("Compare user's details to expected")
-    public static void compareUserDetails(UserDetails userDetailsActual, UserDetails userDetailsExpected) {
+    public static void verifyBasicUsersDetails(UserDetails userDetailsActual, UserDetails userDetailsExpected) {
         assertThat(userDetailsActual.getName())
                 .as("Name should be the same as expected")
                 .isEqualTo(userDetailsExpected.getName());

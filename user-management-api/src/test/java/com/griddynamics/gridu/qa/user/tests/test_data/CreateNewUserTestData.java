@@ -3,13 +3,11 @@ package com.griddynamics.gridu.qa.user.tests.test_data;
 import com.griddynamics.gridu.qa.user.*;
 import com.griddynamics.gridu.qa.user.utils.NumberRange;
 import lombok.SneakyThrows;
-import org.apache.james.mime4j.dom.datetime.DateTime;
 
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.TimeZone;
 
 import static com.griddynamics.gridu.qa.user.utils.EnumUtils.getRandomElement;
 
@@ -31,18 +29,18 @@ class CreateNewUserTestData {
     protected final static int EXPIRY_YEAR = LocalDate.now().plusYears(1).getYear();
     protected final static int EXPIRY_MONTH = LocalDate.now().plusYears(1).getMonthValue();
     protected final static String CARD_HOLDER = NAME + " " + SURNAME;
-    private static final NumberRange monthsRange = new NumberRange(1, 12);
+    // timezone is defined as number of minutes added from -14*60 to 14*60 (-14h to +14h)
+    protected static final int TIMEZONE_UTC_PLUS_ONE = 60;
+    protected static final NumberRange monthsRange = new NumberRange(1, 12);
     protected final static LocalDate BIRTHDAY =
             LocalDate.of(2000, getRandomElement(Month.class), monthsRange.randomInt());
     protected final static LocalDate BIRTHDAY_2 =
             LocalDate.of(2000, getRandomElement(Month.class), monthsRange.randomInt());
-    private static final int DIGITS_NUMBER_IN_CARD_NUMBER = 16;
+    protected static final int DIGITS_NUMBER_IN_CARD_NUMBER = 16;
     protected final static String CARD_NUMBER = createRandomDigitSequence(DIGITS_NUMBER_IN_CARD_NUMBER);
-    private static final int DIGITS_IN_CVV = 3;
+    protected static final int DIGITS_IN_CVV = 3;
     protected final static String CVV = createRandomDigitSequence(DIGITS_IN_CVV);
-
-    // timezone is defined as number of minutes added from -14*60 to 14*60 (-14h to +14h)
-    protected static final int TIMEZONE_UTC_PLUS_ONE = 60;
+    protected static final String NOT_FOUND = "NOT_FOUND";
 
     @SneakyThrows
     public static CreateUserRequest prepareBasicCreateUserRequestData() {
@@ -65,6 +63,16 @@ class CreateNewUserTestData {
         XMLGregorianCalendar birthday = DatatypeFactory.newInstance().newXMLGregorianCalendar(BIRTHDAY_2.toString());
         birthday.setTimezone(TIMEZONE_UTC_PLUS_ONE);
         userDetails.setBirthday(birthday);
+        return userDetails;
+    }
+
+    @SneakyThrows
+    public static UserDetails prepareNotFoundUserDetails(long userId) {
+        UserDetails userDetails = new UserDetails();
+        userDetails.setId(userId);
+        userDetails.setName(NOT_FOUND);
+        userDetails.setLastName(NOT_FOUND);
+        userDetails.setEmail(NOT_FOUND);
         return userDetails;
     }
 

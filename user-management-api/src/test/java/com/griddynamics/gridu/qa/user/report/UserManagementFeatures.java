@@ -18,4 +18,7 @@ public class UserManagementFeatures {
     public static final String PBI_UPDATE_USER = "[PBI] update user";
     public static final String TC_UPDATE_USER = "[TC] update user - update user basic data";
 
+    public static final String PBI_DELETE_USER = "[PBI] delete user";
+    public static final String TC_DELETE_USER = "[TC] delete user";
+
 }

@@ -8,7 +8,8 @@ import lombok.SneakyThrows;
 import org.testng.annotations.Test;
 
 import static com.griddynamics.gridu.qa.user.report.UserManagementFeatures.*;
-import static com.griddynamics.gridu.qa.user.steps.UserManagementSteps.*;
+import static com.griddynamics.gridu.qa.user.steps.UserManagementSteps.verifyBasicUserData;
+import static com.griddynamics.gridu.qa.user.steps.UserManagementSteps.verifyUpdatedUserDetails;
 import static com.griddynamics.gridu.qa.user.tests.test_data.CreateNewUserTestData.prepareBasicCreateUserRequestData;
 import static com.griddynamics.gridu.qa.user.tests.test_data.CreateNewUserTestData.prepareOtherUserDetails;
 
@@ -19,7 +20,7 @@ public class UpdateUserTest extends UserManagementE2EBaseTest {
     @Test(description = TC_UPDATE_USER)
     @Description(TC_UPDATE_USER)
     @SneakyThrows
-    public void updateUserData() {
+    public void updateUsersData() {
         CreateUserRequest createUserRequest = prepareBasicCreateUserRequestData();
         CreateUserResponse createUserResponse = userManagementClient.createUser(createUserRequest);
         verifyBasicUserData(createUserRequest, createUserResponse);
