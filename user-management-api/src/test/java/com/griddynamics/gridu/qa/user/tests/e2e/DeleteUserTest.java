@@ -9,8 +9,8 @@ import org.testng.annotations.Test;
 import static com.griddynamics.gridu.qa.user.report.UserManagementFeatures.*;
 import static com.griddynamics.gridu.qa.user.steps.UserManagementSteps.verifyBasicUserData;
 import static com.griddynamics.gridu.qa.user.steps.UserManagementSteps.verifyBasicUsersDetails;
-import static com.griddynamics.gridu.qa.user.tests.test_data.CreateNewUserTestData.prepareBasicCreateUserRequestData;
-import static com.griddynamics.gridu.qa.user.tests.test_data.CreateNewUserTestData.prepareNotFoundUserDetails;
+import static com.griddynamics.gridu.qa.user.tests.test_data.UserTestData.prepareBasicCreateUserRequestData;
+import static com.griddynamics.gridu.qa.user.tests.test_data.UserTestData.prepareNotFoundUserDetails;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Feature(FEATURE_USER)

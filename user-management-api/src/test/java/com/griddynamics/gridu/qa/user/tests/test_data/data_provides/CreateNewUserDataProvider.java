@@ -4,7 +4,9 @@ import com.griddynamics.gridu.qa.user.CreateUserRequest;
 import lombok.SneakyThrows;
 import org.testng.annotations.DataProvider;
 
-import static com.griddynamics.gridu.qa.user.tests.test_data.CreateNewUserTestData.*;
+import static com.griddynamics.gridu.qa.user.tests.test_data.AddressTestData.*;
+import static com.griddynamics.gridu.qa.user.tests.test_data.PaymentTestData.*;
+import static com.griddynamics.gridu.qa.user.tests.test_data.UserTestData.prepareBasicCreateUserRequestData;
 
 public class CreateNewUserDataProvider {
 
@@ -17,7 +19,8 @@ public class CreateNewUserDataProvider {
         addNewAddress(addresses, prepareNewAddress());
 
         CreateUserRequest.Payments payments = preparePayments();
-        addNewPayment(payments, prepareNewPayment());
+        String cardHolder = createUserRequest.getName() + " " + createUserRequest.getLastName();
+        addNewPayment(payments, prepareNewPayment(cardHolder));
 
         createUserRequest.setAddresses(addresses);
         createUserRequest.setPayments(payments);

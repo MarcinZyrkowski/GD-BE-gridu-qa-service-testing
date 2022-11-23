@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 import static com.griddynamics.gridu.qa.user.report.UserManagementFeatures.*;
 import static com.griddynamics.gridu.qa.user.steps.UserManagementSteps.verifyBasicUserData;
 import static com.griddynamics.gridu.qa.user.steps.UserManagementSteps.verifyCreatedUserDetails;
-import static com.griddynamics.gridu.qa.user.tests.test_data.CreateNewUserTestData.prepareBasicCreateUserRequestData;
+import static com.griddynamics.gridu.qa.user.tests.test_data.UserTestData.prepareBasicCreateUserRequestData;
 
 @Feature(FEATURE_USER)
 @Story(PBI_GET_USER_DETAILS)
