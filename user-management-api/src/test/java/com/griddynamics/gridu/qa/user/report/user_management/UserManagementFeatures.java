@@ -11,5 +11,7 @@ public class UserManagementFeatures {
     public static final String UM_PBI_CREATE_USER = "[PBI] create new user";
     public static final String UM_TC_CREATE_USER_ERROR_ON_SAVING_PAYMENT =
             "[TC] create new user - create new user, error on saving payment";
+    public static final String UM_TC_CREATE_USER_WITH_VALID_PAYMENT_AND_ADDRESS =
+            "[TC] create new user - create new user, error on saving payment";
 
 }

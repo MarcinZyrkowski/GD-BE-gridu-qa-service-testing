@@ -3,6 +3,7 @@
 
     <suite-files>
         <suite-file path="e2e.xml"/>
+        <suite-file path="UM.xml"/>
     </suite-files>
 
 </suite>
