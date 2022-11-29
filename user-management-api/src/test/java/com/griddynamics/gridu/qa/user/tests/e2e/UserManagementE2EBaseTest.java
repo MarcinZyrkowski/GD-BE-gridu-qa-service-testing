@@ -10,7 +10,7 @@ public class UserManagementE2EBaseTest {
 
     @BeforeMethod
     public void setUp() {
-        userManagementClient = new UserManagementClient();
+        userManagementClient = new UserManagementClient(USER_MANAGEMENT_PORT);
     }
 
 }

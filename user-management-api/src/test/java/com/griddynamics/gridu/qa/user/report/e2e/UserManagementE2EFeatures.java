@@ -1,10 +1,10 @@
-package com.griddynamics.gridu.qa.user.report;
+package com.griddynamics.gridu.qa.user.report.e2e;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class UserManagementFeatures {
+public class UserManagementE2EFeatures {
 
     public static final String FEATURE_USER = "[FEATURE] user";
 

@@ -7,7 +7,7 @@ import io.qameta.allure.Story;
 import lombok.SneakyThrows;
 import org.testng.annotations.Test;
 
-import static com.griddynamics.gridu.qa.user.report.UserManagementFeatures.*;
+import static com.griddynamics.gridu.qa.user.report.e2e.UserManagementE2EFeatures.*;
 import static com.griddynamics.gridu.qa.user.steps.UserManagementSteps.verifyBasicUserData;
 import static com.griddynamics.gridu.qa.user.steps.UserManagementSteps.verifyUpdatedUserDetails;
 import static com.griddynamics.gridu.qa.user.tests.test_data.UserTestData.prepareBasicCreateUserRequestData;

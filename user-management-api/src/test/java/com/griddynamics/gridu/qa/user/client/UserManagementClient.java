@@ -6,15 +6,14 @@ import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 
 import static com.griddynamics.gridu.qa.user.Environment.LOCAL_HOST;
 import static com.griddynamics.gridu.qa.user.Environment.SCHEMA_DERIVED_CLASSES_PATH;
-import static com.griddynamics.gridu.qa.user.tests.e2e.UserManagementE2EBaseTest.USER_MANAGEMENT_PORT;
 
 public class UserManagementClient extends WebServiceGatewaySupport {
 
-    public UserManagementClient() {
+    public UserManagementClient(int workingPort) {
         Jaxb2Marshaller marshaller = marshaller();
         this.setMarshaller(marshaller);
         this.setUnmarshaller(marshaller);
-        this.setDefaultUri(LOCAL_HOST + USER_MANAGEMENT_PORT + "/ws");
+        this.setDefaultUri(LOCAL_HOST + workingPort + "/ws");
     }
 
     private Jaxb2Marshaller marshaller() {

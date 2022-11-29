@@ -8,12 +8,12 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.testng.annotations.Test;
 
-import static com.griddynamics.gridu.qa.user.report.UserManagementFeatures.*;
+import static com.griddynamics.gridu.qa.user.report.e2e.UserManagementE2EFeatures.*;
 import static com.griddynamics.gridu.qa.user.steps.UserManagementSteps.*;
 
 @Feature(FEATURE_USER)
 @Story(PBI_CREATE_USER)
-public class CreateNewUserTest extends UserManagementE2EBaseTest {
+public class CreateUserTest extends UserManagementE2EBaseTest {
 
     @Test(description = TC_CREATE_USER, dataProviderClass = CreateNewUserDataProvider.class,
             dataProvider = "validUserWithAddressesAndPayments")
