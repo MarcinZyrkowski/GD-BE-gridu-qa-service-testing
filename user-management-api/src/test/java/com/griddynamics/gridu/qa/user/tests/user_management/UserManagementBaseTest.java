@@ -15,7 +15,6 @@ public class UserManagementBaseTest {
     protected UserManagementClient userManagementClient;
     protected WireMockServer wireMockServer;
     protected static final int wiremockPort = 9999;
-    protected ObjectMapper objectMapper = new ObjectMapper();
 
     @BeforeMethod
     public void setUp() {
@@ -39,5 +38,4 @@ public class UserManagementBaseTest {
     public void stopWireMock() {
         wireMockServer.stop();
     }
-
 }

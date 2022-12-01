@@ -32,4 +32,39 @@ public class CreateNewUserDataProvider {
         };
     }
 
+    @DataProvider
+    @SneakyThrows
+    public static Object[][] validUserWithPayments() {
+        CreateUserRequest createUserRequest = prepareBasicCreateUserRequestData();
+
+        CreateUserRequest.Payments payments = preparePayments();
+        String cardHolder = createUserRequest.getName() + " " + createUserRequest.getLastName();
+        addNewPayment(payments, prepareNewPayment(cardHolder));
+
+        createUserRequest.setPayments(payments);
+
+        return new Object[][]{
+                {
+                        createUserRequest
+                }
+        };
+    }
+
+    @DataProvider
+    @SneakyThrows
+    public static Object[][] validUserWithAddresses() {
+        CreateUserRequest createUserRequest = prepareBasicCreateUserRequestData();
+
+        CreateUserRequest.Addresses addresses = prepareAddresses();
+        addNewAddress(addresses, prepareNewAddress());
+
+        createUserRequest.setAddresses(addresses);
+
+        return new Object[][]{
+                {
+                        createUserRequest
+                }
+        };
+    }
+
 }

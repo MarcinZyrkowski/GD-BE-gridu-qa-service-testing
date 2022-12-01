@@ -1,11 +1,13 @@
 package com.griddynamics.gridu.qa.user.tests.test_data;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.griddynamics.gridu.qa.user.ObjectFactory;
 import com.griddynamics.gridu.qa.user.utils.NumberRange;
 
 public abstract class TestData {
 
     protected final static ObjectFactory OBJECT_FACTORY = new ObjectFactory();
+    protected static ObjectMapper objectMapper = new ObjectMapper();
 
     public static String createRandomDigitSequence(int digitSequenceLength) {
         NumberRange digit = new NumberRange(0, 9);
