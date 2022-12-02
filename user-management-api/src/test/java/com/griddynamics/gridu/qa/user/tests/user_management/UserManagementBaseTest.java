@@ -1,6 +1,5 @@
 package com.griddynamics.gridu.qa.user.tests.user_management;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.griddynamics.gridu.qa.user.UserManagement;
@@ -16,6 +15,8 @@ public class UserManagementBaseTest {
     protected WireMockServer wireMockServer;
     protected static final int wiremockPort = 9999;
 
+    String wiremockUrl = "http://localhost:9999";
+
     @BeforeMethod
     public void setUp() {
         userManagementClient = new UserManagementClient(WIREMOCK_USER_MANAGEMENT_PORT);
@@ -29,8 +30,14 @@ public class UserManagementBaseTest {
     @BeforeSuite(alwaysRun = true)
     public void startAppAndWireMock() {
         startWireMock();
-
         SpringApplication userManagementService = new SpringApplication(UserManagement.class);
+
+//        Properties userManagementProperties = new Properties();
+//        userManagementProperties.put("server.port", WIREMOCK_USER_MANAGEMENT_PORT);
+//        userManagementProperties.put("payment.service.url", wiremockUrl);
+//        userManagementProperties.put("address.service.url", wiremockUrl);
+//        userManagementService.setDefaultProperties(userManagementProperties);
+
         userManagementService.run();
     }
 

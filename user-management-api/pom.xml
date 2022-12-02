@@ -12,7 +12,6 @@
         <spring.boot.version>2.7.5</spring.boot.version>
         <swagger.annotations.version>1.6.2</swagger.annotations.version>
         <jackson.databind.nullable.version>0.2.0</jackson.databind.nullable.version>
-        <springfox.version>2.9.2</springfox.version>
     </properties>
 
     <parent>

@@ -26,7 +26,6 @@
         <resteasy-jaxrs.version>3.13.2.Final</resteasy-jaxrs.version>
         <jsr305.version>3.0.2</jsr305.version>
         <testng.version>7.5</testng.version>
-        <rest-assured.version>5.2.0</rest-assured.version>
         <aspectj.version>1.8.10</aspectj.version>
         <maven-surefire-plugin-version>2.22.2</maven-surefire-plugin-version>
         <allure-testng.version>2.20.1</allure-testng.version>
@@ -152,7 +151,6 @@
                 <version>${wiremock-jre8.version}</version>
                 <scope>test</scope>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 

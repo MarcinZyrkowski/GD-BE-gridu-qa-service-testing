@@ -38,7 +38,7 @@ public class CreateUserTest extends UserManagementBaseTest {
             expectedExceptions = SoapFaultClientException.class,
             expectedExceptionsMessageRegExp = "Can not save user addresses!",
             dataProviderClass = CreateNewUserDataProvider.class, dataProvider = "validUserWithAddresses")
-    @Description(UM_TC_CREATE_USER_ERROR_ON_SAVING_PAYMENT)
+    @Description(UM_TC_CREATE_USER_ERROR_ON_SAVING_ADDRESS)
     public void errorOnSavingNewAddressDuringCreationNewUser(CreateUserRequest createUserRequest) {
         stubForService(wireMockServer, PAYMENTS_URL_REGEX, createPaymentResponseJSON());
         stubForServiceWithError(wireMockServer, ADDRESS_URL_REGEX);
