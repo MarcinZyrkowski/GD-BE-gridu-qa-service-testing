@@ -1,12 +1,12 @@
-package com.griddynamics.gridu.qa.user.tests.test_data.data_provides;
+package com.griddynamics.gridu.qa.user.all_tests.test_data.data_provides;
 
 import com.griddynamics.gridu.qa.user.CreateUserRequest;
 import lombok.SneakyThrows;
 import org.testng.annotations.DataProvider;
 
-import static com.griddynamics.gridu.qa.user.tests.test_data.AddressTestData.*;
-import static com.griddynamics.gridu.qa.user.tests.test_data.PaymentTestData.*;
-import static com.griddynamics.gridu.qa.user.tests.test_data.UserTestData.prepareBasicCreateUserRequestData;
+import static com.griddynamics.gridu.qa.user.all_tests.test_data.AddressTestData.*;
+import static com.griddynamics.gridu.qa.user.all_tests.test_data.PaymentTestData.*;
+import static com.griddynamics.gridu.qa.user.all_tests.test_data.UserTestData.prepareBasicCreateUserRequestData;
 
 public class CreateNewUserDataProvider {
 

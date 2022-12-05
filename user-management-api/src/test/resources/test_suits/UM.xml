@@ -1,9 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="UM Tests">
 
     <test name="User management tests">
         <packages>
-            <package name="com.griddynamics.gridu.qa.user.tests.user_management.*"/>
+            <package name="com.griddynamics.gridu.qa.user.all_tests.user_management.*"/>
         </packages>
     </test>
 

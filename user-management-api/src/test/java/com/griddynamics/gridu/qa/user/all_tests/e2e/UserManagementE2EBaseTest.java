@@ -1,4 +1,4 @@
-package com.griddynamics.gridu.qa.user.tests.e2e;
+package com.griddynamics.gridu.qa.user.all_tests.e2e;
 
 import com.griddynamics.gridu.qa.user.client.UserManagementClient;
 import org.testng.annotations.BeforeMethod;
@@ -9,7 +9,7 @@ public class UserManagementE2EBaseTest {
     protected UserManagementClient userManagementClient;
 
     @BeforeMethod
-    public void setUp() {
+    public void setUpUserManagementClient() {
         userManagementClient = new UserManagementClient(USER_MANAGEMENT_PORT);
     }
 

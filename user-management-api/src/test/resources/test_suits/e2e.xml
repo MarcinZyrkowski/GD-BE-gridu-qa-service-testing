@@ -3,7 +3,7 @@
 
     <test name="User management e2e tests">
         <packages>
-            <package name="com.griddynamics.gridu.qa.user.tests.e2e.*"/>
+            <package name="com.griddynamics.gridu.qa.user.all_tests.e2e.tests.*"/>
         </packages>
     </test>
 

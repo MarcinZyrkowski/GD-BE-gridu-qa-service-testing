@@ -1,4 +1,4 @@
-package com.griddynamics.gridu.qa.user.tests.test_data;
+package com.griddynamics.gridu.qa.user.all_tests.test_data;
 
 import com.griddynamics.gridu.qa.payment.api.model.Payment;
 import com.griddynamics.gridu.qa.user.CreateUserRequest;

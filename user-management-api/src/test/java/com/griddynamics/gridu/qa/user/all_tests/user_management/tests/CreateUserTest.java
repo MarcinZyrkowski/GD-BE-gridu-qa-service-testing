@@ -1,8 +1,9 @@
-package com.griddynamics.gridu.qa.user.tests.user_management;
+package com.griddynamics.gridu.qa.user.all_tests.user_management.tests;
 
 import com.griddynamics.gridu.qa.user.CreateUserRequest;
 import com.griddynamics.gridu.qa.user.CreateUserResponse;
-import com.griddynamics.gridu.qa.user.tests.test_data.data_provides.CreateNewUserDataProvider;
+import com.griddynamics.gridu.qa.user.all_tests.test_data.data_provides.CreateNewUserDataProvider;
+import com.griddynamics.gridu.qa.user.all_tests.user_management.UserManagementBaseTest;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
@@ -10,13 +11,13 @@ import lombok.SneakyThrows;
 import org.springframework.ws.soap.client.SoapFaultClientException;
 import org.testng.annotations.Test;
 
+import static com.griddynamics.gridu.qa.user.all_tests.test_data.AddressTestData.createAddressResponseJSON;
+import static com.griddynamics.gridu.qa.user.all_tests.test_data.PaymentTestData.createPaymentResponseJSON;
+import static com.griddynamics.gridu.qa.user.all_tests.test_data.ServicesTestData.stubForService;
+import static com.griddynamics.gridu.qa.user.all_tests.test_data.ServicesTestData.stubForServiceWithError;
 import static com.griddynamics.gridu.qa.user.constants.Constants.ADDRESS_URL_REGEX;
 import static com.griddynamics.gridu.qa.user.constants.Constants.PAYMENTS_URL_REGEX;
 import static com.griddynamics.gridu.qa.user.report.user_management.UserManagementFeatures.*;
-import static com.griddynamics.gridu.qa.user.tests.test_data.AddressTestData.createAddressResponseJSON;
-import static com.griddynamics.gridu.qa.user.tests.test_data.PaymentTestData.createPaymentResponseJSON;
-import static com.griddynamics.gridu.qa.user.tests.test_data.ServicesTestData.stubForService;
-import static com.griddynamics.gridu.qa.user.tests.test_data.ServicesTestData.stubForServiceWithError;
 
 @Feature(UM_FEATURE_USER)
 @Story(UM_PBI_CREATE_USER)
@@ -55,6 +56,8 @@ public class CreateUserTest extends UserManagementBaseTest {
         stubForService(wireMockServer, PAYMENTS_URL_REGEX, createPaymentResponseJSON());
 
         CreateUserResponse createUserResponse = userManagementClient.createUser(createUserRequest);
+
+        // TODO add validation
     }
 
 }

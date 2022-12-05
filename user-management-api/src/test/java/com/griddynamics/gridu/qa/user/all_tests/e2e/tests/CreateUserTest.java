@@ -1,8 +1,9 @@
-package com.griddynamics.gridu.qa.user.tests.e2e;
+package com.griddynamics.gridu.qa.user.all_tests.e2e.tests;
 
 import com.griddynamics.gridu.qa.user.CreateUserRequest;
 import com.griddynamics.gridu.qa.user.CreateUserResponse;
-import com.griddynamics.gridu.qa.user.tests.test_data.data_provides.CreateNewUserDataProvider;
+import com.griddynamics.gridu.qa.user.all_tests.e2e.UserManagementE2EBaseTest;
+import com.griddynamics.gridu.qa.user.all_tests.test_data.data_provides.CreateNewUserDataProvider;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
