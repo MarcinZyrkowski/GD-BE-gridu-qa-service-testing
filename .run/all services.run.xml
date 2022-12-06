@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="all services" type="CompoundRunConfigurationType">
+    <toRun name="AddressManagement" type="Application" />
+    <toRun name="GatewayStub" type="Application" />
+    <toRun name="PaymentManagement" type="Application" />
+    <toRun name="UserManagement" type="Application" />
+    <method v="2" />
+  </configuration>
+</component>
