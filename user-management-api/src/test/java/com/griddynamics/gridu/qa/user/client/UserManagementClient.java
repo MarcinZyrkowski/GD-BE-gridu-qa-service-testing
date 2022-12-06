@@ -1,6 +1,7 @@
 package com.griddynamics.gridu.qa.user.client;
 
 import com.griddynamics.gridu.qa.user.*;
+import io.qameta.allure.Step;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 
@@ -22,18 +23,22 @@ public class UserManagementClient extends WebServiceGatewaySupport {
         return marshaller;
     }
 
+    @Step("Create new user request")
     public CreateUserResponse createUser(CreateUserRequest request) {
         return (CreateUserResponse) getWebServiceTemplate().marshalSendAndReceive(request);
     }
 
+    @Step("Get user's details")
     public GetUserDetailsResponse getUserDetails(GetUserDetailsRequest request) {
         return (GetUserDetailsResponse) getWebServiceTemplate().marshalSendAndReceive(request);
     }
 
+    @Step("Update user's details")
     public UpdateUserResponse updateUser(UpdateUserRequest request) {
         return (UpdateUserResponse) getWebServiceTemplate().marshalSendAndReceive(request);
     }
 
+    @Step("Delete user")
     public DeleteUserResponse deleteUser(DeleteUserRequest request) {
         return (DeleteUserResponse) getWebServiceTemplate().marshalSendAndReceive(request);
     }

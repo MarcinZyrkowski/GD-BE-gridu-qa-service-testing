@@ -3,6 +3,7 @@ package com.griddynamics.gridu.qa.user.all_tests.test_data;
 import com.griddynamics.gridu.qa.user.CreateUserRequest;
 import com.griddynamics.gridu.qa.user.UserDetails;
 import com.griddynamics.gridu.qa.user.utils.NumberRange;
+import io.qameta.allure.Step;
 import lombok.SneakyThrows;
 
 import javax.xml.datatype.DatatypeFactory;
@@ -31,6 +32,7 @@ class UserTestData extends TestData {
     protected static final String NOT_FOUND = "NOT_FOUND";
 
     @SneakyThrows
+    @Step("Prepare basic user request data")
     public static CreateUserRequest prepareBasicCreateUserRequestData() {
         CreateUserRequest createUserRequest = OBJECT_FACTORY.createCreateUserRequest();
         createUserRequest.setName(NAME);
@@ -43,6 +45,7 @@ class UserTestData extends TestData {
     }
 
     @SneakyThrows
+    @Step("Prepare other user details")
     public static UserDetails prepareOtherUserDetails() {
         UserDetails userDetails = new UserDetails();
         userDetails.setName(NAME_2);
@@ -55,6 +58,7 @@ class UserTestData extends TestData {
     }
 
     @SneakyThrows
+    @Step("Prepare not found user details")
     public static UserDetails prepareNotFoundUserDetails(long userId) {
         UserDetails userDetails = new UserDetails();
         userDetails.setId(userId);

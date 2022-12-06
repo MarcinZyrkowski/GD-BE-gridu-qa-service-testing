@@ -6,6 +6,7 @@ import com.griddynamics.gridu.qa.user.all_tests.test_data.data_provides.CreateNe
 import com.griddynamics.gridu.qa.user.all_tests.user_management.UserManagementBaseTest;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import lombok.SneakyThrows;
 import org.springframework.ws.soap.client.SoapFaultClientException;

@@ -5,6 +5,7 @@ import com.griddynamics.gridu.qa.user.CreateUserRequest;
 import com.griddynamics.gridu.qa.user.NewAddress;
 import com.griddynamics.gridu.qa.user.State;
 import com.griddynamics.gridu.qa.user.utils.NumberRange;
+import io.qameta.allure.Step;
 import lombok.SneakyThrows;
 
 import java.util.Collections;
@@ -29,10 +30,12 @@ public class AddressTestData extends TestData {
         return OBJECT_FACTORY.createCreateUserRequestAddresses();
     }
 
+    @Step("Add new address")
     public static void addNewAddress(CreateUserRequest.Addresses addresses, NewAddress newAddress) {
         addresses.getAddress().add(newAddress);
     }
 
+    @Step("Prepare new address")
     public static NewAddress prepareNewAddress() {
         NewAddress address = OBJECT_FACTORY.createNewAddress();
         address.setState(STATE);
@@ -43,6 +46,7 @@ public class AddressTestData extends TestData {
         return address;
     }
 
+    @Step("Create address response")
     public static Address createAddressResponse() {
         Address address = new Address();
         address.setUserId(numberRange.randomLong());
@@ -56,6 +60,7 @@ public class AddressTestData extends TestData {
     }
 
     @SneakyThrows
+    @Step("Create address response as JSON")
     public static String createAddressResponseJSON() {
         return objectMapper.writeValueAsString(Collections.singletonList(createAddressResponse()));
     }
