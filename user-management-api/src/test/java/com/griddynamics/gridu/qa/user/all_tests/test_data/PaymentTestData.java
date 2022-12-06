@@ -4,6 +4,7 @@ import com.griddynamics.gridu.qa.payment.api.model.Payment;
 import com.griddynamics.gridu.qa.user.CreateUserRequest;
 import com.griddynamics.gridu.qa.user.NewPayment;
 import com.griddynamics.gridu.qa.user.utils.NumberRange;
+import io.qameta.allure.Step;
 import lombok.SneakyThrows;
 
 import java.time.LocalDate;
@@ -23,14 +24,17 @@ public class PaymentTestData extends TestData {
     protected static final String CARD_NUMBER = createRandomDigitSequence(DIGITS_NUMBER_IN_CARD_NUMBER);
     protected static final NumberRange numberRange = new NumberRange(1, 10000);
 
+    @Step("Prepare payments")
     public static CreateUserRequest.Payments preparePayments() {
         return OBJECT_FACTORY.createCreateUserRequestPayments();
     }
 
+    @Step("Add new payment")
     public static void addNewPayment(CreateUserRequest.Payments payments, NewPayment newPayment) {
         payments.getPayment().add(newPayment);
     }
 
+    @Step("Prepare new payment")
     public static NewPayment prepareNewPayment(String cardHolder) {
         NewPayment payment = OBJECT_FACTORY.createNewPayment();
         payment.setCardNumber(CARD_NUMBER);
@@ -41,6 +45,7 @@ public class PaymentTestData extends TestData {
         return payment;
     }
 
+    @Step("Create payment response")
     public static Payment createPaymentResponse() {
         Payment payment = new Payment();
         payment.setCardHolder(CARD_HOLDER);
@@ -55,6 +60,7 @@ public class PaymentTestData extends TestData {
     }
 
     @SneakyThrows
+    @Step("Create payment response as JSON")
     public static String createPaymentResponseJSON() {
         return objectMapper.writeValueAsString(Collections.singletonList(createPaymentResponse()));
     }

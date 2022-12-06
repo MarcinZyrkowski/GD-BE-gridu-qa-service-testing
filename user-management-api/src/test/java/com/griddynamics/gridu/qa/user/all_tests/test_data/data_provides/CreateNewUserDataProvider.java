@@ -1,6 +1,7 @@
 package com.griddynamics.gridu.qa.user.all_tests.test_data.data_provides;
 
 import com.griddynamics.gridu.qa.user.CreateUserRequest;
+import io.qameta.allure.Step;
 import lombok.SneakyThrows;
 import org.testng.annotations.DataProvider;
 
@@ -12,6 +13,7 @@ public class CreateNewUserDataProvider {
 
     @DataProvider
     @SneakyThrows
+    @Step("Prepare valid user data with address and payment")
     public static Object[][] validUserWithAddressesAndPayments() {
         CreateUserRequest createUserRequest = prepareBasicCreateUserRequestData();
 
@@ -34,6 +36,7 @@ public class CreateNewUserDataProvider {
 
     @DataProvider
     @SneakyThrows
+    @Step("Prepare valid user data with payment")
     public static Object[][] validUserWithPayments() {
         CreateUserRequest createUserRequest = prepareBasicCreateUserRequestData();
 
@@ -52,6 +55,7 @@ public class CreateNewUserDataProvider {
 
     @DataProvider
     @SneakyThrows
+    @Step("Prepare valid user data with address")
     public static Object[][] validUserWithAddresses() {
         CreateUserRequest createUserRequest = prepareBasicCreateUserRequestData();
 
