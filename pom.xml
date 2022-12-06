@@ -25,11 +25,10 @@
         <resteasy-jackson-provider.version>3.13.2.Final</resteasy-jackson-provider.version>
         <resteasy-jaxrs.version>3.13.2.Final</resteasy-jaxrs.version>
         <jsr305.version>3.0.2</jsr305.version>
+
         <testng.version>7.5</testng.version>
-        <aspectj.version>1.8.10</aspectj.version>
         <maven-surefire-plugin-version>2.22.2</maven-surefire-plugin-version>
         <allure-testng.version>2.20.1</allure-testng.version>
-        <h2.version>2.1.214</h2.version>
         <assertj-core.version>3.23.1</assertj-core.version>
         <wiremock-jre8.version>2.35.0</wiremock-jre8.version>
     </properties>
