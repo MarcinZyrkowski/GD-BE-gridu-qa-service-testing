@@ -4,7 +4,6 @@ import com.griddynamics.gridu.qa.user.*;
 import com.griddynamics.gridu.qa.user.tf.Environment;
 import io.qameta.allure.Step;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
-import org.springframework.stereotype.Component;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 
 public class Client extends WebServiceGatewaySupport {

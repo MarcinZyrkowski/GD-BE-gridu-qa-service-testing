@@ -2,9 +2,9 @@ package com.griddynamics.gridu.qa.user.tf.all_tests.user_management.tests;
 
 import com.griddynamics.gridu.qa.user.CreateUserRequest;
 import com.griddynamics.gridu.qa.user.CreateUserResponse;
-import com.griddynamics.gridu.qa.user.tf.test_data.data_provides.CreateNewUserDataProvider;
 import com.griddynamics.gridu.qa.user.tf.all_tests.user_management.UserManagementBaseTest;
 import com.griddynamics.gridu.qa.user.tf.test_data.ServicesTestData;
+import com.griddynamics.gridu.qa.user.tf.test_data.data_provides.CreateNewUserDataProvider;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
@@ -12,11 +12,11 @@ import lombok.SneakyThrows;
 import org.springframework.ws.soap.client.SoapFaultClientException;
 import org.testng.annotations.Test;
 
-import static com.griddynamics.gridu.qa.user.tf.test_data.AddressTestData.createAddressResponseJSON;
-import static com.griddynamics.gridu.qa.user.tf.test_data.PaymentTestData.createPaymentResponseJSON;
 import static com.griddynamics.gridu.qa.user.tf.constants.Constants.ADDRESS_URL_REGEX;
 import static com.griddynamics.gridu.qa.user.tf.constants.Constants.PAYMENTS_URL_REGEX;
 import static com.griddynamics.gridu.qa.user.tf.report.user_management.UserManagementFeatures.*;
+import static com.griddynamics.gridu.qa.user.tf.test_data.AddressTestData.createAddressResponseJSON;
+import static com.griddynamics.gridu.qa.user.tf.test_data.PaymentTestData.createPaymentResponseJSON;
 
 @Feature(UM_FEATURE_USER)
 @Story(UM_PBI_CREATE_USER)

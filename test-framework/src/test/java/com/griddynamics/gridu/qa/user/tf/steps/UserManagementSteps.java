@@ -7,8 +7,7 @@ import org.assertj.core.api.Assertions;
 import java.util.List;
 import java.util.Optional;
 
-public
-class UserManagementSteps {
+public class UserManagementSteps {
 
     @Step("Verify user is created correctly")
     public static void verifyBasicUserData(CreateUserRequest createUserRequest, CreateUserResponse createUserResponse) {
