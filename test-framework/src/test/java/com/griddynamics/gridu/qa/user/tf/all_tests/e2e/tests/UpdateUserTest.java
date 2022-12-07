@@ -9,9 +9,9 @@ import io.qameta.allure.Story;
 import lombok.SneakyThrows;
 import org.testng.annotations.Test;
 
+import static com.griddynamics.gridu.qa.user.tf.report.e2e.UserManagementE2EFeatures.*;
 import static com.griddynamics.gridu.qa.user.tf.test_data.UserTestData.prepareBasicCreateUserRequestData;
 import static com.griddynamics.gridu.qa.user.tf.test_data.UserTestData.prepareOtherUserDetails;
-import static com.griddynamics.gridu.qa.user.tf.report.e2e.UserManagementE2EFeatures.*;
 
 @Feature(FEATURE_USER)
 @Story(PBI_UPDATE_USER)

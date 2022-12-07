@@ -72,4 +72,27 @@ public class CreateNewUserDataProvider {
         };
     }
 
+    @DataProvider
+    @SneakyThrows
+    @Step("Prepare valid user data with mock address and mock payment")
+    public static Object[][] validUserWithMockAddressesAndMockPayments() {
+        CreateUserRequest createUserRequest = prepareBasicCreateUserRequestData();
+
+        CreateUserRequest.Addresses addresses = prepareAddresses();
+        addNewAddress(addresses, prepareMockNewAddress());
+
+        CreateUserRequest.Payments payments = preparePayments();
+        String cardHolder = createUserRequest.getName() + " " + createUserRequest.getLastName();
+        addNewPayment(payments, prepareMockNewPayment(cardHolder));
+
+        createUserRequest.setAddresses(addresses);
+        createUserRequest.setPayments(payments);
+
+        return new Object[][]{
+                {
+                        createUserRequest
+                }
+        };
+    }
+
 }
