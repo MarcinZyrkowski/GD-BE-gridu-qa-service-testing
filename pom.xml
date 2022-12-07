@@ -25,12 +25,6 @@
         <resteasy-jackson-provider.version>3.13.2.Final</resteasy-jackson-provider.version>
         <resteasy-jaxrs.version>3.13.2.Final</resteasy-jaxrs.version>
         <jsr305.version>3.0.2</jsr305.version>
-
-        <testng.version>7.5</testng.version>
-        <maven-surefire-plugin-version>2.22.2</maven-surefire-plugin-version>
-        <allure-testng.version>2.20.1</allure-testng.version>
-        <assertj-core.version>3.23.1</assertj-core.version>
-        <wiremock-jre8.version>2.35.0</wiremock-jre8.version>
     </properties>
 
     <modules>
@@ -38,6 +32,7 @@
         <module>payment-gateway-stub</module>
         <module>payment-management-api</module>
         <module>user-management-api</module>
+        <module>test-framework</module>
     </modules>
 
     <dependencyManagement>
@@ -112,37 +107,6 @@
                 <groupId>com.google.code.findbugs</groupId>
                 <artifactId>jsr305</artifactId>
                 <version>${jsr305.version}</version>
-            </dependency>
-
-
-            <!--Do not upgrade testNG version-->
-            <dependency>
-                <groupId>org.testng</groupId>
-                <artifactId>testng</artifactId>
-                <version>${testng.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven-surefire-plugin-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.qameta.allure</groupId>
-                <artifactId>allure-testng</artifactId>
-                <version>${allure-testng.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.assertj</groupId>
-                <artifactId>assertj-core</artifactId>
-                <version>${assertj-core.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.github.tomakehurst</groupId>
-                <artifactId>wiremock-jre8</artifactId>
-                <version>${wiremock-jre8.version}</version>
-                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
