@@ -23,7 +23,9 @@ public class AddressTestData extends TestData {
     protected static final String LINE_2 = "address line 2";
     protected static final String LINE_2_2 = "address line 2.2";
     protected static final Address.StateEnum STATE_ENUM = EnumUtils.getRandomElement(Address.StateEnum.class);
-    protected static final NumberRange numberRange = new NumberRange(1, 10000);
+    protected static final NumberRange NUMBER_RANGE = new NumberRange(1, 10000);
+    protected static final long MOCK_USER_ID = NUMBER_RANGE.randomLong();
+    protected static final long MOCK_ADDRESS_ID = NUMBER_RANGE.randomLong();
 
     public static CreateUserRequest.Addresses prepareAddresses() {
         return OBJECT_FACTORY.createCreateUserRequestAddresses();
@@ -45,11 +47,22 @@ public class AddressTestData extends TestData {
         return address;
     }
 
-    @Step("Create address response")
-    public static Address createAddressResponse() {
+    @Step("Prepare mock new address")
+    public static NewAddress prepareMockNewAddress() {
+        NewAddress address = OBJECT_FACTORY.createNewAddress();
+        address.setState(State.fromValue(STATE_ENUM.toString()));
+        address.setCity(CITY_2);
+        address.setZip(ZIP_2);
+        address.setLine1(LINE_1_2);
+        address.setLine2(LINE_2_2);
+        return address;
+    }
+
+    @Step("Create mock address response")
+    public static Address createMockAddressResponse() {
         Address address = new Address();
-        address.setUserId(numberRange.randomLong());
-        address.setId(numberRange.randomLong());
+        address.setUserId(MOCK_USER_ID);
+        address.setId(MOCK_ADDRESS_ID);
         address.setAddressLine1(LINE_1_2);
         address.setAddressLine2(LINE_2_2);
         address.setCity(CITY_2);
@@ -61,7 +74,7 @@ public class AddressTestData extends TestData {
     @SneakyThrows
     @Step("Create address response as JSON")
     public static String createAddressResponseJSON() {
-        return objectMapper.writeValueAsString(Collections.singletonList(createAddressResponse()));
+        return objectMapper.writeValueAsString(Collections.singletonList(createMockAddressResponse()));
     }
 
 }

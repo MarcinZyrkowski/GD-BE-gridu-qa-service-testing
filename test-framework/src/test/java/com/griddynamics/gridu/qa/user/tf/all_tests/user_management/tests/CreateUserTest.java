@@ -15,6 +15,7 @@ import org.testng.annotations.Test;
 import static com.griddynamics.gridu.qa.user.tf.constants.Constants.ADDRESS_URL_REGEX;
 import static com.griddynamics.gridu.qa.user.tf.constants.Constants.PAYMENTS_URL_REGEX;
 import static com.griddynamics.gridu.qa.user.tf.report.user_management.UserManagementFeatures.*;
+import static com.griddynamics.gridu.qa.user.tf.steps.UserManagementSteps.*;
 import static com.griddynamics.gridu.qa.user.tf.test_data.AddressTestData.createAddressResponseJSON;
 import static com.griddynamics.gridu.qa.user.tf.test_data.PaymentTestData.createPaymentResponseJSON;
 
@@ -47,7 +48,8 @@ public class CreateUserTest extends UserManagementBaseTest {
     }
 
     @Test(description = UM_TC_CREATE_USER_WITH_VALID_PAYMENT_AND_ADDRESS,
-            dataProviderClass = CreateNewUserDataProvider.class, dataProvider = "validUserWithAddressesAndPayments")
+            dataProviderClass = CreateNewUserDataProvider.class,
+            dataProvider = "validUserWithMockAddressesAndMockPayments")
     @Description(UM_TC_CREATE_USER_WITH_VALID_PAYMENT_AND_ADDRESS)
     @SneakyThrows
     public void createNewUser(CreateUserRequest createUserRequest) {
@@ -56,7 +58,11 @@ public class CreateUserTest extends UserManagementBaseTest {
 
         CreateUserResponse createUserResponse = client.createUser(createUserRequest);
 
-        // TODO add validation
+        verifyBasicUserData(createUserRequest, createUserResponse);
+        verifyAddressesList(createUserResponse.getUserDetails().getAddresses().getAddress(),
+                createUserRequest.getAddresses().getAddress());
+        verifyPaymentsList(createUserResponse.getUserDetails().getPayments().getPayment(),
+                createUserRequest.getPayments().getPayment());
     }
 
 }

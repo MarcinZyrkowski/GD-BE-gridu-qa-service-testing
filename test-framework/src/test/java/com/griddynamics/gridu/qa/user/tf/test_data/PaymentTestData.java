@@ -22,7 +22,9 @@ public class PaymentTestData extends TestData {
     protected static final String CVV_2 = createRandomDigitSequence(DIGITS_IN_CVV);
     protected static final int DIGITS_NUMBER_IN_CARD_NUMBER = 16;
     protected static final String CARD_NUMBER = createRandomDigitSequence(DIGITS_NUMBER_IN_CARD_NUMBER);
-    protected static final NumberRange numberRange = new NumberRange(1, 10000);
+    protected static final NumberRange NUMBER_RANGE = new NumberRange(1, 10000);
+    protected static final long MOCK_USER_ID = NUMBER_RANGE.randomLong();
+    protected static final long MOCK_PAYMENT_ID = NUMBER_RANGE.randomLong();
 
     @Step("Prepare payments")
     public static CreateUserRequest.Payments preparePayments() {
@@ -45,12 +47,23 @@ public class PaymentTestData extends TestData {
         return payment;
     }
 
-    @Step("Create payment response")
-    public static Payment createPaymentResponse() {
+    @Step("Prepare mock new payment")
+    public static NewPayment prepareMockNewPayment(String cardHolder) {
+        NewPayment payment = OBJECT_FACTORY.createNewPayment();
+        payment.setCardNumber(CARD_NUMBER);
+        payment.setExpiryYear(EXPIRY_YEAR_2);
+        payment.setExpiryMonth(EXPIRY_MONTH_2);
+        payment.setCardholder(cardHolder);
+        payment.setCvv(CVV_2);
+        return payment;
+    }
+
+    @Step("Create mock payment response")
+    public static Payment createMockPaymentResponse() {
         Payment payment = new Payment();
         payment.setCardHolder(CARD_HOLDER);
-        payment.setUserId(numberRange.randomLong());
-        payment.setId(numberRange.randomLong());
+        payment.setUserId(MOCK_USER_ID);
+        payment.setId(MOCK_PAYMENT_ID);
         payment.setCardNumber(CARD_NUMBER);
         payment.setExpiryYear(EXPIRY_YEAR_2);
         payment.setExpiryMonth(EXPIRY_MONTH_2);
@@ -62,7 +75,7 @@ public class PaymentTestData extends TestData {
     @SneakyThrows
     @Step("Create payment response as JSON")
     public static String createPaymentResponseJSON() {
-        return objectMapper.writeValueAsString(Collections.singletonList(createPaymentResponse()));
+        return objectMapper.writeValueAsString(Collections.singletonList(createMockPaymentResponse()));
     }
 
 }
