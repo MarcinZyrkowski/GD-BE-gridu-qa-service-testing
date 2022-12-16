@@ -4,6 +4,7 @@
     <suite-files>
         <suite-file path="e2e.xml"/>
         <suite-file path="UM.xml"/>
+        <suite-file path="PM.xml"/>
     </suite-files>
 
 </suite>

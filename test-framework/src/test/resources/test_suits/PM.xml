@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="PM Tests">
+
+    <test name="Payment Management tests">
+        <packages>
+            <package name="com.griddynamics.gridu.qa.user.tf.all_tests.payment_management.tests.*"/>
+        </packages>
+    </test>
+
+</suite>
