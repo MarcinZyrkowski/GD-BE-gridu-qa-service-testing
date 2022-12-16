@@ -16,15 +16,7 @@
 
     <properties>
         <spring-boot-starter-test.version>2.3.5.RELEASE</spring-boot-starter-test.version>
-        <testng.version>7.5</testng.version>
-        <allure-testng.version>2.20.1</allure-testng.version>
-        <assertj-core.version>3.23.1</assertj-core.version>
-        <wiremock-jre8.version>2.35.0</wiremock-jre8.version>
-        <spring-ws-core.version>3.1.4</spring-ws-core.version>
-        <spring-boot-starter.version>2.6.14</spring-boot-starter.version>
         <mockito-core.version>4.9.0</mockito-core.version>
-
-        <spring-aop.version>5.3.9</spring-aop.version>
     </properties>
 
     <dependencies>
@@ -85,7 +77,6 @@
             <artifactId>jsr305</artifactId>
         </dependency>
 
-
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
@@ -98,15 +89,6 @@
             <version>${spring-boot-starter-test.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!--Do not upgrade testNG version-->
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>${testng.version}</version>
-            <scope>test</scope>
-        </dependency>
-
     </dependencies>
 
     <build>
