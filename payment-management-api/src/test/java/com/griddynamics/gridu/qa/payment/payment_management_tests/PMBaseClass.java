@@ -11,13 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class PMBaseClass {
 
+    protected final DtoConverter dtoConverter = new DtoConverter();
     public PaymentManagementService paymentManagementService;
-
     @Autowired
     protected PaymentRepository paymentRepository;
     @Mock
     protected CardApi cardApi;
-    protected final DtoConverter dtoConverter = new DtoConverter();
 
     @BeforeEach
     public void setUp() {
