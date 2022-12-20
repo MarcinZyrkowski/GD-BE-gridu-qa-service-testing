@@ -1,1 +1,0 @@
-package com.griddynamics.gridu.qa.payment.bootstrap;

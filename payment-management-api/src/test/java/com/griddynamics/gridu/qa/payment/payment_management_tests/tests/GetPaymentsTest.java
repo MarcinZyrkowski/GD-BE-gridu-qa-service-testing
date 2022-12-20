@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
+import static com.griddynamics.gridu.qa.payment.bootstrap.BootstrapData.BOOTSTRAP_USER_ID;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
@@ -14,15 +15,14 @@ public class GetPaymentsTest extends PMBaseClass {
 
     @Test
     public void getAllPaymentForUser() {
-        // given
-        long randomUserID = userIdRange.randomLong();
-
         // when
-        List<PaymentModel> allPaymentsForUser = paymentManagementService.getAllPaymentsForUser(randomUserID);
+        List<PaymentModel> allPaymentsForUser = paymentManagementService.getAllPaymentsForUser(BOOTSTRAP_USER_ID);
 
         // then
         assertNotNull(allPaymentsForUser,
-                "Returned payments list for user with ID: " + randomUserID + "%s should not be null");
+                "Returned payments list for user with ID: " + BOOTSTRAP_USER_ID + "%s should not be null");
+
+        System.out.println(allPaymentsForUser.size());
     }
 
 }
