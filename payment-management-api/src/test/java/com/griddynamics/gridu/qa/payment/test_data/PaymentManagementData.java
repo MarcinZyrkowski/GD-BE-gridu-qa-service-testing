@@ -24,14 +24,16 @@ public class PaymentManagementData extends TestData {
         return payment;
     }
 
-    public static Payment prepareUpdatedPaymentRequest(PaymentModel paymentModelToUpdate) {
-        Payment payment = new Payment();
+    public static PaymentModel prepareUpdatedPaymentRequest(PaymentModel paymentModelToUpdate) {
+        PaymentModel payment = new PaymentModel();
+        payment.setId(payment.getId());
         payment.setUserId(paymentModelToUpdate.getUserId());
         payment.setCardNumber(paymentModelToUpdate.getCardNumber());
-        payment.setCardHolder(paymentModelToUpdate.getCardholder());
+        payment.setCardholder(paymentModelToUpdate.getCardholder());
         payment.setExpiryYear(LocalDate.now().plusYears(3).getYear());
         payment.setExpiryMonth(LocalDate.now().plusMonths(2).getMonthValue());
         payment.setCvv(CVV);
+        payment.setToken(paymentModelToUpdate.getToken());
         return payment;
     }
 
