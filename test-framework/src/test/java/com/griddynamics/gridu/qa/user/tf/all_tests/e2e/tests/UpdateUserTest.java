@@ -21,17 +21,24 @@ public class UpdateUserTest extends UserManagementE2EBaseTest {
     @Description(TC_UPDATE_USER)
     @SneakyThrows
     public void updateUsersData() {
+        // given
         CreateUserRequest createUserRequest = prepareBasicCreateUserRequestData();
         CreateUserResponse createUserResponse = client.createUser(createUserRequest);
         UserManagementSteps.verifyBasicUserData(createUserRequest, createUserResponse);
 
+        // when
         UpdateUserRequest updateUserRequest = new UpdateUserRequest();
         UserDetails userDetailsToUpdate = prepareOtherUserDetails();
         userDetailsToUpdate.setId(createUserResponse.getUserDetails().getId());
 
+        // then
         updateUserRequest.setUserDetails(userDetailsToUpdate);
         UpdateUserResponse updateUserResponse = client.updateUser(updateUserRequest);
         UserManagementSteps.verifyUpdatedUserDetails(updateUserRequest, updateUserResponse);
     }
+
+    // update addresses
+
+    // update payments
 
 }

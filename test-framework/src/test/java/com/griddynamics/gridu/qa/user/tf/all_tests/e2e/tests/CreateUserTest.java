@@ -17,17 +17,47 @@ import static com.griddynamics.gridu.qa.user.tf.steps.UserManagementSteps.*;
 @Story(PBI_CREATE_USER)
 public class CreateUserTest extends UserManagementE2EBaseTest {
 
-    @Test(description = TC_CREATE_USER, dataProviderClass = CreateNewUserDataProvider.class,
-            dataProvider = "validUserWithAddressesAndPayments")
-    @Description(TC_CREATE_USER)
-    public void createNewUser(CreateUserRequest createUserRequest) {
+    @Test(description = TC_CREATE_USER_WITH_ADDRESS_AND_PAYMENT, dataProviderClass = CreateNewUserDataProvider.class,
+            dataProvider = "validUserWithAddressAndPayment")
+    @Description(TC_CREATE_USER_WITH_ADDRESS_AND_PAYMENT)
+    public void createNewUserWithAddressAndPayment(CreateUserRequest createUserRequest) {
+        // when
         CreateUserResponse createUserResponse = client.createUser(createUserRequest);
 
+        // then
         verifyBasicUserData(createUserRequest, createUserResponse);
-        verifyAddressesList(createUserResponse.getUserDetails().getAddresses().getAddress(),
-                createUserRequest.getAddresses().getAddress());
-        verifyPaymentsList(createUserResponse.getUserDetails().getPayments().getPayment(),
-                createUserRequest.getPayments().getPayment());
+        verifyAddressLists(createUserResponse, createUserRequest);
+        verifyPaymentLists(createUserResponse, createUserRequest);
     }
+
+    @Test(description = TC_CREATE_USER_WITH_ADDRESS_AND_PAYMENT, dataProviderClass = CreateNewUserDataProvider.class,
+            dataProvider = "validUserWithPayments")
+    @Description(TC_CREATE_USER_WITH_PAYMENT)
+    public void createNewUserWithPayment(CreateUserRequest createUserRequest) {
+        // when
+        CreateUserResponse createUserResponse = client.createUser(createUserRequest);
+
+        // then
+        verifyBasicUserData(createUserRequest, createUserResponse);
+        verifyAddressLists(createUserResponse, createUserRequest);
+        verifyPaymentLists(createUserResponse, createUserRequest);
+    }
+
+    @Test(description = TC_CREATE_USER_WITH_ADDRESS_AND_PAYMENT, dataProviderClass = CreateNewUserDataProvider.class,
+            dataProvider = "validUserWithAddresses")
+    @Description(TC_CREATE_USER_WITH_ADDRESS)
+    public void createNewUserWithAddress(CreateUserRequest createUserRequest) {
+        // when
+        CreateUserResponse createUserResponse = client.createUser(createUserRequest);
+
+        // then
+        verifyBasicUserData(createUserRequest, createUserResponse);
+        verifyAddressLists(createUserResponse, createUserRequest);
+        verifyPaymentLists(createUserResponse, createUserRequest);
+    }
+
+    // TODO
+    // basic
+    // mandatory data only
 
 }

@@ -15,7 +15,7 @@ public class CreateNewUserDataProvider {
     @DataProvider
     @SneakyThrows
     @Step("Prepare valid user data with address and payment")
-    public static Object[][] validUserWithAddressesAndPayments() {
+    public static Object[][] validUserWithAddressAndPayment() {
         CreateUserRequest createUserRequest = prepareBasicCreateUserRequestData();
 
         CreateUserRequest.Addresses addresses = prepareAddresses();

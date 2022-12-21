@@ -20,17 +20,21 @@ public class DeleteUserTest extends UserManagementE2EBaseTest {
     @Test(description = UserManagementE2EFeatures.TC_DELETE_USER)
     @Description(UserManagementE2EFeatures.TC_DELETE_USER)
     public void deleteUser() {
+        // given
         CreateUserRequest createUserRequest = prepareBasicCreateUserRequestData();
         CreateUserResponse createUserResponse = client.createUser(createUserRequest);
         UserManagementSteps.verifyBasicUserData(createUserRequest, createUserResponse);
 
+        // when
         DeleteUserRequest deleteUserRequest = new DeleteUserRequest();
         deleteUserRequest.setUserId(createUserResponse.getUserDetails().getId());
         client.deleteUser(deleteUserRequest);
 
+        // then
         GetUserDetailsRequest userDetailsRequest = new GetUserDetailsRequest();
         userDetailsRequest.setUserId(createUserResponse.getUserDetails().getId());
         GetUserDetailsResponse getUserDetailsResponse = client.getUserDetails(userDetailsRequest);
+
         assertThat(getUserDetailsResponse)
                 .as("Get User details response should not be null")
                 .isNotNull();
