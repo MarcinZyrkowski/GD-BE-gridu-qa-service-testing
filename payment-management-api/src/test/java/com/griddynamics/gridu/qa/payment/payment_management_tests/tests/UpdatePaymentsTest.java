@@ -61,6 +61,8 @@ public class UpdatePaymentsTest extends PMBaseClass {
 
         paymentManagementService.updatePaymentsForUser(userId, allPaymentsForUserAfterSavingNewPayment);
 
+
+        // TODO
         System.out.println("x");
 
 //        // then
