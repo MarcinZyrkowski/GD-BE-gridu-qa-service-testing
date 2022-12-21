@@ -29,9 +29,11 @@ public class CreateUserTest extends UserManagementBaseTest {
             dataProviderClass = CreateNewUserDataProvider.class, dataProvider = "validUserWithPayments")
     @Description(UM_TC_CREATE_USER_ERROR_ON_SAVING_PAYMENT)
     public void errorOnSavingNewPaymentDuringCreationNewUser(CreateUserRequest createUserRequest) {
+        // given
         ServicesTestData.stubForService(wireMockServer, ADDRESS_URL_REGEX, createAddressResponseJSON());
         ServicesTestData.stubForServiceWithError(wireMockServer, PAYMENTS_URL_REGEX);
 
+        // when
         client.createUser(createUserRequest);
     }
 
@@ -41,9 +43,11 @@ public class CreateUserTest extends UserManagementBaseTest {
             dataProviderClass = CreateNewUserDataProvider.class, dataProvider = "validUserWithAddresses")
     @Description(UM_TC_CREATE_USER_ERROR_ON_SAVING_ADDRESS)
     public void errorOnSavingNewAddressDuringCreationNewUser(CreateUserRequest createUserRequest) {
+        // given
         ServicesTestData.stubForService(wireMockServer, PAYMENTS_URL_REGEX, createPaymentResponseJSON());
         ServicesTestData.stubForServiceWithError(wireMockServer, ADDRESS_URL_REGEX);
 
+        // when
         client.createUser(createUserRequest);
     }
 
@@ -53,16 +57,17 @@ public class CreateUserTest extends UserManagementBaseTest {
     @Description(UM_TC_CREATE_USER_WITH_VALID_PAYMENT_AND_ADDRESS)
     @SneakyThrows
     public void createNewUser(CreateUserRequest createUserRequest) {
+        // given
         ServicesTestData.stubForService(wireMockServer, ADDRESS_URL_REGEX, createAddressResponseJSON());
         ServicesTestData.stubForService(wireMockServer, PAYMENTS_URL_REGEX, createPaymentResponseJSON());
 
+        // when
         CreateUserResponse createUserResponse = client.createUser(createUserRequest);
 
+        // then
         verifyBasicUserData(createUserRequest, createUserResponse);
-        verifyAddressesList(createUserResponse.getUserDetails().getAddresses().getAddress(),
-                createUserRequest.getAddresses().getAddress());
-        verifyPaymentsList(createUserResponse.getUserDetails().getPayments().getPayment(),
-                createUserRequest.getPayments().getPayment());
+        verifyAddressLists(createUserResponse, createUserRequest);
+        verifyPaymentLists(createUserResponse, createUserRequest);
     }
 
 }

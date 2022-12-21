@@ -19,20 +19,23 @@ import static com.griddynamics.gridu.qa.user.tf.test_data.UserTestData.prepareBa
 
 @Feature(FEATURE_USER)
 @Story(PBI_GET_USER_DETAILS)
-@Issue(BUG_GREGORIAN_CALENDAR)
 public class GetUserDetailsTest extends UserManagementE2EBaseTest {
 
     @Test(description = TC_GET_USERS_DETAILS)
     @Description(TC_GET_USERS_DETAILS)
+    @Issue(BUG_GREGORIAN_CALENDAR)
     public void getUserDetails() {
+        // given
         CreateUserRequest createUserRequest = prepareBasicCreateUserRequestData();
         CreateUserResponse createUserResponse = client.createUser(createUserRequest);
         UserManagementSteps.verifyBasicUserData(createUserRequest, createUserResponse);
 
+        // when
         GetUserDetailsRequest userDetailsRequest = new GetUserDetailsRequest();
         userDetailsRequest.setUserId(createUserResponse.getUserDetails().getId());
         GetUserDetailsResponse getUserDetailsResponse = client.getUserDetails(userDetailsRequest);
 
+        // then
         // bug with xml gregorian calendar
         UserManagementSteps.verifyCreatedUserDetails(createUserResponse, getUserDetailsResponse);
     }

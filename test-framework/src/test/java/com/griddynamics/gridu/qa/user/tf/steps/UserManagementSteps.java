@@ -35,21 +35,42 @@ public class UserManagementSteps {
                 .isEqualTo(createUserRequest.getBirthday());
     }
 
-    @Step("Verify Addresses list")
-    public static void verifyAddressesList(List<ExistingAddress> actualExistingAddressList,
+    @Step("Verify Address lists")
+    public static void verifyAddressLists(CreateUserResponse responseWithActualAddresses,
+            CreateUserRequest requestWithExpectedAddresses) {
+
+        if (requestWithExpectedAddresses.getAddresses() == null ||
+                requestWithExpectedAddresses.getAddresses().getAddress() == null) {
+
+            Assertions.assertThat(responseWithActualAddresses.getUserDetails().getAddresses().getAddress().isEmpty())
+                    .isTrue();
+        } else {
+            compareAddressLists(responseWithActualAddresses.getUserDetails().getAddresses().getAddress(),
+                    requestWithExpectedAddresses.getAddresses().getAddress());
+        }
+    }
+
+    @Step("Compare Address lists")
+    public static void compareAddressLists(List<ExistingAddress> actualExistingAddressList,
             List<NewAddress> expectedNewAddressList) {
-        actualExistingAddressList.forEach(address -> Assertions.assertThat(address.getId())
-                .as("Created address should have generated id value")
-                .isNotNull());
 
-        expectedNewAddressList.forEach(address ->
-                Assertions.assertThat(findExistingAddressByNewAddress(actualExistingAddressList, address).isPresent())
-                        .as("Existing address corresponding to new address should be found")
-                        .isTrue());
+        if (expectedNewAddressList == null) {
+            Assertions.assertThat(actualExistingAddressList).isNull();
+        } else {
+            actualExistingAddressList.forEach(address -> Assertions.assertThat(address.getId())
+                    .as("Created address should have generated id value")
+                    .isNotNull());
 
-        Assertions.assertThat(actualExistingAddressList.size())
-                .as("New address list size and Existing address list size should be the same")
-                .isEqualTo(expectedNewAddressList.size());
+            expectedNewAddressList.forEach(address ->
+                    Assertions.assertThat(
+                                    findExistingAddressByNewAddress(actualExistingAddressList, address).isPresent())
+                            .as("Existing address corresponding to new address should be found")
+                            .isTrue());
+
+            Assertions.assertThat(actualExistingAddressList.size())
+                    .as("New address list size and Existing address list size should be the same")
+                    .isEqualTo(expectedNewAddressList.size());
+        }
     }
 
     @Step("Find corresponding existing new address")
@@ -64,8 +85,23 @@ public class UserManagementSteps {
                 .findAny();
     }
 
-    @Step("Verify Payment list")
-    public static void verifyPaymentsList(List<ExistingPayment> actualExistingPaymentsList,
+    @Step("Verify payment lists")
+    public static void verifyPaymentLists(CreateUserResponse responseWithActualPayments,
+            CreateUserRequest requestWithExpectedPayments) {
+
+        if (requestWithExpectedPayments.getPayments() == null ||
+                requestWithExpectedPayments.getPayments().getPayment() == null) {
+
+            Assertions.assertThat(responseWithActualPayments.getUserDetails().getPayments().getPayment().isEmpty())
+                    .isTrue();
+        } else {
+            comparePaymentLists(responseWithActualPayments.getUserDetails().getPayments().getPayment(),
+                    requestWithExpectedPayments.getPayments().getPayment());
+        }
+    }
+
+    @Step("Compare payment lists")
+    public static void comparePaymentLists(List<ExistingPayment> actualExistingPaymentsList,
             List<NewPayment> expectedNewPaymentsList) {
 
         actualExistingPaymentsList.forEach(payment -> Assertions.assertThat(payment.getId())
