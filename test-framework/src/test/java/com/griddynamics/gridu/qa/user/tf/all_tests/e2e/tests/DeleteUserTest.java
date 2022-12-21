@@ -3,7 +3,7 @@ package com.griddynamics.gridu.qa.user.tf.all_tests.e2e.tests;
 import com.griddynamics.gridu.qa.user.*;
 import com.griddynamics.gridu.qa.user.tf.all_tests.e2e.UserManagementE2EBaseTest;
 import com.griddynamics.gridu.qa.user.tf.report.e2e.UserManagementE2EFeatures;
-import com.griddynamics.gridu.qa.user.tf.steps.UserManagementSteps;
+import com.griddynamics.gridu.qa.user.tf.steps.UserSteps;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
@@ -23,7 +23,7 @@ public class DeleteUserTest extends UserManagementE2EBaseTest {
         // given
         CreateUserRequest createUserRequest = prepareBasicCreateUserRequestData();
         CreateUserResponse createUserResponse = client.createUser(createUserRequest);
-        UserManagementSteps.verifyBasicUserData(createUserRequest, createUserResponse);
+        UserSteps.verifyBasicUserData(createUserRequest, createUserResponse);
 
         // when
         DeleteUserRequest deleteUserRequest = new DeleteUserRequest();
@@ -48,7 +48,7 @@ public class DeleteUserTest extends UserManagementE2EBaseTest {
         assertThat(deletedUserDetails.getId())
                 .as("Deleted user's details id and deleted user's id template should be equal")
                 .isEqualTo(deletedUserDetailsTemplate.getId());
-        UserManagementSteps.verifyBasicUsersDetails(deletedUserDetails, deletedUserDetailsTemplate);
+        UserSteps.verifyBasicUsersDetails(deletedUserDetails, deletedUserDetailsTemplate);
         assertThat(deletedUserDetails.getAddresses())
                 .as("Addresses list should be null")
                 .isNull();

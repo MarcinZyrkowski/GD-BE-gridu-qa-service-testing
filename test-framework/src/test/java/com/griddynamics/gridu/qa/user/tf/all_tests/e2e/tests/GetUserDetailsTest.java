@@ -5,8 +5,8 @@ import com.griddynamics.gridu.qa.user.CreateUserResponse;
 import com.griddynamics.gridu.qa.user.GetUserDetailsRequest;
 import com.griddynamics.gridu.qa.user.GetUserDetailsResponse;
 import com.griddynamics.gridu.qa.user.tf.all_tests.e2e.UserManagementE2EBaseTest;
-import com.griddynamics.gridu.qa.user.tf.report.e2e.UserManagementE2EFeatures;
-import com.griddynamics.gridu.qa.user.tf.steps.UserManagementSteps;
+import com.griddynamics.gridu.qa.user.tf.steps.GeneralSteps;
+import com.griddynamics.gridu.qa.user.tf.steps.UserSteps;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Issue;
@@ -28,7 +28,7 @@ public class GetUserDetailsTest extends UserManagementE2EBaseTest {
         // given
         CreateUserRequest createUserRequest = prepareBasicCreateUserRequestData();
         CreateUserResponse createUserResponse = client.createUser(createUserRequest);
-        UserManagementSteps.verifyBasicUserData(createUserRequest, createUserResponse);
+        GeneralSteps.verifyAllUsersData(createUserRequest, createUserResponse);
 
         // when
         GetUserDetailsRequest userDetailsRequest = new GetUserDetailsRequest();
@@ -37,7 +37,7 @@ public class GetUserDetailsTest extends UserManagementE2EBaseTest {
 
         // then
         // bug with xml gregorian calendar
-        UserManagementSteps.verifyCreatedUserDetails(createUserResponse, getUserDetailsResponse);
+        UserSteps.verifyCreatedUserDetails(createUserResponse, getUserDetailsResponse);
     }
 
 }

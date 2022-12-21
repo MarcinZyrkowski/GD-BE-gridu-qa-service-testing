@@ -10,7 +10,7 @@ import static com.griddynamics.gridu.qa.user.tf.test_data.AddressTestData.*;
 import static com.griddynamics.gridu.qa.user.tf.test_data.PaymentTestData.*;
 import static com.griddynamics.gridu.qa.user.tf.test_data.UserTestData.prepareBasicCreateUserRequestData;
 
-public class CreateNewUserDataProvider {
+public class UserDataProvider {
 
     @DataProvider
     @SneakyThrows
