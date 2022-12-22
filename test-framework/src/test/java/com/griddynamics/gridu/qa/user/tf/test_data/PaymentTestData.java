@@ -2,9 +2,7 @@ package com.griddynamics.gridu.qa.user.tf.test_data;
 
 import com.griddynamics.gridu.qa.payment.api.model.Payment;
 import com.griddynamics.gridu.qa.user.CreateUserRequest;
-import com.griddynamics.gridu.qa.user.ExistingPayment;
 import com.griddynamics.gridu.qa.user.NewPayment;
-import com.griddynamics.gridu.qa.user.UserDetails;
 import com.griddynamics.gridu.qa.user.tf.utils.NumberRange;
 import io.qameta.allure.Step;
 import lombok.SneakyThrows;

@@ -6,6 +6,8 @@ import com.griddynamics.gridu.qa.payment.payment_management_tests.PMBaseClass;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +24,8 @@ public class SavePaymentTest extends PMBaseClass {
 
     @Test
     @SneakyThrows
+    @Transactional
+    @Rollback(value = false)
     public void savePayment() {
         // given
         long userID = userIdRange.randomLong();
@@ -50,21 +54,26 @@ public class SavePaymentTest extends PMBaseClass {
                 findPaymentInPaymentList(paymentModelResponse, allPaymentsForUserAfterSavingNewPayment);
 
         assertTrue(optionalPaymentModel.isPresent());
+
+        // clearing db
+        paymentManagementService.deleteAllPaymentsForUser(userID);
     }
 
     @Test
     @SneakyThrows
+    @Transactional
+    @Rollback(value = false)
     public void invalidTokenOnSavingPayment() {
         // given
-        long userID = userIdRange.randomLong();
+        long userId = userIdRange.randomLong();
 
-        Payment paymentRequest = preparePaymentRequest(userID);
+        Payment paymentRequest = preparePaymentRequest(userId);
         PaymentModel paymentModelRequest = dtoConverter.convertFrom(paymentRequest);
         when(cardApi.verifyCard(dtoConverter.convertToCard(paymentModelRequest)))
                 .thenThrow(new RuntimeException("Invalid token"));
 
         List<PaymentModel> allPaymentsForUserBeforeSavingNewPayment =
-                paymentManagementService.getAllPaymentsForUser(userID);
+                paymentManagementService.getAllPaymentsForUser(userId);
 
         // when
         PaymentModel paymentModelResponse = paymentManagementService.saveOrUpdatePayment(paymentModelRequest);
@@ -73,7 +82,7 @@ public class SavePaymentTest extends PMBaseClass {
         arePaymentResponseEqualsRequest(paymentModelResponse, paymentModelRequest);
 
         List<PaymentModel> allPaymentsForUserAfterSavingNewPayment =
-                paymentManagementService.getAllPaymentsForUser(userID);
+                paymentManagementService.getAllPaymentsForUser(userId);
 
         assertEquals(allPaymentsForUserBeforeSavingNewPayment.size() + 1,
                 allPaymentsForUserAfterSavingNewPayment.size());
@@ -83,6 +92,9 @@ public class SavePaymentTest extends PMBaseClass {
 
         assertTrue(optionalPaymentModel.isPresent());
         assertEquals(paymentModelResponse.getToken(), PAYMENT_GATEWAY_FAILED_TOKEN);
+
+        // clearing db
+        paymentManagementService.deleteAllPaymentsForUser(userId);
     }
 
 }

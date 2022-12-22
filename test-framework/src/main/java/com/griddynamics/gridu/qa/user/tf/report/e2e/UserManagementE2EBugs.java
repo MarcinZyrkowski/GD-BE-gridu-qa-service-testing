@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserManagementE2EBugs {
 
-    public static final String BUG_GREGORIAN_CALENDAR = "[BUG] gregorian calendar return birthday is different than " +
-            "in request";
+    public static final String BUG_GREGORIAN_CALENDAR = "[BUG] gregorian calendar return different birthday date " +
+            " than in request";
 
 }

@@ -21,8 +21,6 @@ public class GetPaymentsTest extends PMBaseClass {
         // then
         assertNotNull(allPaymentsForUser,
                 "Returned payments list for user with ID: " + BOOTSTRAP_USER_ID + "%s should not be null");
-
-        System.out.println(allPaymentsForUser.size());
     }
 
 }

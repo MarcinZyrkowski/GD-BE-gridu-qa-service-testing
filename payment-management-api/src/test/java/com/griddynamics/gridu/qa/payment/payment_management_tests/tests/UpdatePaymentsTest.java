@@ -9,22 +9,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static com.griddynamics.gridu.qa.payment.steps.PMSteps.arePaymentResponseEqualsRequest;
-import static com.griddynamics.gridu.qa.payment.steps.PMSteps.findPaymentInPaymentList;
+import static com.griddynamics.gridu.qa.payment.steps.PMSteps.*;
 import static com.griddynamics.gridu.qa.payment.test_data.PaymentManagementData.preparePaymentRequest;
-import static java.util.Collections.singletonList;
+import static com.griddynamics.gridu.qa.payment.test_data.PaymentManagementData.prepareUpdatedPaymentRequest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
 public class UpdatePaymentsTest extends PMBaseClass {
-
-    // TODO
 
     @Test
     @SneakyThrows
@@ -56,25 +53,26 @@ public class UpdatePaymentsTest extends PMBaseClass {
         assertTrue(optionalPaymentModel.isPresent());
 
         // when
-        allPaymentsForUserAfterSavingNewPayment.get(0).setExpiryYear(LocalDate.now().plusYears(123).getYear());
+        Payment paymentRequestToUpdate = prepareUpdatedPaymentRequest(paymentModelResponse);
+        PaymentModel paymentModelToUpdate = dtoConverter.convertFrom(paymentRequestToUpdate);
+        when(cardApi.verifyCard(dtoConverter.convertToCard(paymentModelToUpdate)))
+                .thenReturn(PAYMENT_GATEWAY_ACCEPT_TOKEN_UPDATED);
 
+        paymentManagementService.updatePaymentsForUser(userId, Collections.singletonList(paymentModelToUpdate));
 
-        paymentManagementService.updatePaymentsForUser(userId, allPaymentsForUserAfterSavingNewPayment);
+        // then
+        List<PaymentModel> allPaymentsForUserAfterUpdatingPayment =
+                paymentManagementService.getAllPaymentsForUser(userId);
 
+        assertEquals(allPaymentsForUserAfterSavingNewPayment.size(), allPaymentsForUserAfterUpdatingPayment.size());
 
-        // TODO
-        System.out.println("x");
+        Optional<PaymentModel> optionalUpdatedPaymentModel =
+                findUpdatedPaymentInPaymentList(paymentModelToUpdate, allPaymentsForUserAfterUpdatingPayment);
 
-//        // then
-//        List<PaymentModel> allPaymentsForUserAfterUpdatingPayment =
-//                paymentManagementService.getAllPaymentsForUser(userId);
-//
-//        assertEquals(allPaymentsForUserAfterSavingNewPayment.size(), allPaymentsForUserAfterUpdatingPayment.size());
-//
-//        Optional<PaymentModel> optionalUpdatedPaymentModel =
-//                findPaymentInPaymentList(paymentModelResponse, allPaymentsForUserAfterUpdatingPayment);
-//
-//        assertTrue(optionalUpdatedPaymentModel.isPresent());
+        assertTrue(optionalUpdatedPaymentModel.isPresent());
+
+        // clearing db
+        paymentManagementService.deleteAllPaymentsForUser(userId);
     }
 
 }
