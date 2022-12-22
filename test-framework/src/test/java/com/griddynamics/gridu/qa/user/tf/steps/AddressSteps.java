@@ -1,9 +1,6 @@
 package com.griddynamics.gridu.qa.user.tf.steps;
 
-import com.griddynamics.gridu.qa.user.CreateUserRequest;
-import com.griddynamics.gridu.qa.user.CreateUserResponse;
-import com.griddynamics.gridu.qa.user.ExistingAddress;
-import com.griddynamics.gridu.qa.user.NewAddress;
+import com.griddynamics.gridu.qa.user.*;
 import io.qameta.allure.Step;
 import org.assertj.core.api.Assertions;
 
@@ -27,18 +24,33 @@ public class AddressSteps {
         }
     }
 
+    @Step("Verify updated address lists")
+    public static void verifyUpdatedAddressLists(UserDetails userDetailsWithActualAddresses,
+            UserDetails userDetailsWithExpectedAddresses) {
+
+        if (userDetailsWithExpectedAddresses.getAddresses() == null ||
+                userDetailsWithExpectedAddresses.getAddresses().getAddress() == null) {
+
+            Assertions.assertThat(userDetailsWithActualAddresses.getAddresses().getAddress().isEmpty())
+                    .isTrue();
+        } else {
+            compareExistingAddressLists(userDetailsWithActualAddresses.getAddresses().getAddress(),
+                    userDetailsWithExpectedAddresses.getAddresses().getAddress());
+        }
+    }
+
     @Step("Compare Address lists")
     public static void compareAddressLists(List<ExistingAddress> actualExistingAddressList,
-            List<NewAddress> expectedNewAddressList) {
+            List<NewAddress> expectedAddressDataList) {
 
-        if (expectedNewAddressList == null) {
+        if (expectedAddressDataList == null) {
             Assertions.assertThat(actualExistingAddressList).isNull();
         } else {
             actualExistingAddressList.forEach(address -> Assertions.assertThat(address.getId())
                     .as("Created address should have generated id value")
                     .isNotNull());
 
-            expectedNewAddressList.forEach(address ->
+            expectedAddressDataList.forEach(address ->
                     Assertions.assertThat(
                                     findExistingAddressByNewAddress(actualExistingAddressList, address).isPresent())
                             .as("Existing address corresponding to new address should be found")
@@ -46,7 +58,7 @@ public class AddressSteps {
 
             Assertions.assertThat(actualExistingAddressList.size())
                     .as("New address list size and Existing address list size should be the same")
-                    .isEqualTo(expectedNewAddressList.size());
+                    .isEqualTo(expectedAddressDataList.size());
         }
     }
 
@@ -60,6 +72,25 @@ public class AddressSteps {
                 .filter(existingAddress -> existingAddress.getLine1().equals(newAddress.getLine1()))
                 .filter(existingAddress -> existingAddress.getLine2().equals(newAddress.getLine2()))
                 .findAny();
+    }
+
+    @Step("Compare existing address lists")
+    public static void compareExistingAddressLists(List<ExistingAddress> actualExistingAddressList,
+            List<ExistingAddress> expectedAddressDataList) {
+
+        actualExistingAddressList.forEach(address -> Assertions.assertThat(address.getId())
+                .as("Existing address should have generated id value")
+                .isNotNull());
+
+        expectedAddressDataList.forEach(address ->
+                Assertions.assertThat(findExistingAddressByNewAddress(actualExistingAddressList,
+                                address).isPresent())
+                        .as("Existing address corresponding to new address should be found")
+                        .isTrue());
+
+        Assertions.assertThat(actualExistingAddressList.size())
+                .as("New payment list size and Existing address list size should be the same")
+                .isEqualTo(expectedAddressDataList.size());
     }
 
 }

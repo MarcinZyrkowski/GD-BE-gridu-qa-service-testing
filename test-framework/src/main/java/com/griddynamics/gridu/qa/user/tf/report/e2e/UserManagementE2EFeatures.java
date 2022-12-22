@@ -23,6 +23,8 @@ public class UserManagementE2EFeatures {
 
     public static final String PBI_UPDATE_USER = "[PBI] update user";
     public static final String TC_UPDATE_USER = "[TC] update user - update user's basic data";
+    public static final String TC_UPDATE_USER_PAYMENTS = "[TC] update user - update user's payment";
+    public static final String TC_UPDATE_USER_ADDRESS = "[TC] update user - update user's address";
 
     public static final String PBI_DELETE_USER = "[PBI] delete user";
     public static final String TC_DELETE_USER = "[TC] delete user";
