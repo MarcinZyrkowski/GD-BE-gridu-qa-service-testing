@@ -70,6 +70,9 @@ public class UpdatePaymentsTest extends PMBaseClass {
                 findUpdatedPaymentInPaymentList(paymentModelToUpdate, allPaymentsForUserAfterUpdatingPayment);
 
         assertTrue(optionalUpdatedPaymentModel.isPresent());
+
+        // clearing db
+        paymentManagementService.deleteAllPaymentsForUser(userId);
     }
 
 }

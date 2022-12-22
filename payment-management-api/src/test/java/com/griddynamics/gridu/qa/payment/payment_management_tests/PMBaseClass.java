@@ -15,7 +15,7 @@ public class PMBaseClass {
     protected static final String PAYMENT_GATEWAY_ACCEPT_TOKEN = "accepted_card_token";
     protected static final String PAYMENT_GATEWAY_ACCEPT_TOKEN_UPDATED = "accepted_card_token_updated";
     protected static final String PAYMENT_GATEWAY_FAILED_TOKEN = "FAILED";
-    protected static NumberRange userIdRange = new NumberRange(1, 99);
+    protected static NumberRange userIdRange = new NumberRange(10_000, 100_000);
 
     protected final DtoConverter dtoConverter = new DtoConverter();
     public PaymentManagementService paymentManagementService;
