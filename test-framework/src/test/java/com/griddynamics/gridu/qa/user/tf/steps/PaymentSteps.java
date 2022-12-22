@@ -80,7 +80,7 @@ public class PaymentSteps {
 
         expectedPaymentDataList.forEach(payment ->
                 Assertions.assertThat(findCorrespondingExistingPaymentByNewPayment(actualExistingPaymentsList,
-                        payment).isPresent())
+                                payment).isPresent())
                         .as("Existing payment corresponding to new payment should be found")
                         .isTrue());
 

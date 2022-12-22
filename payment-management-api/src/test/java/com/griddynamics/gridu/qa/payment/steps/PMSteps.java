@@ -21,6 +21,19 @@ public class PMSteps {
                 .findAny();
     }
 
+    public static Optional<PaymentModel> findUpdatedPaymentInPaymentList(PaymentModel payment,
+            List<PaymentModel> paymentList) {
+        return paymentList.stream()
+                .filter(paymentItem -> paymentItem.getUserId().equals(payment.getUserId()))
+                .filter(paymentItem -> paymentItem.getCardNumber().equals(payment.getCardNumber()))
+                .filter(paymentItem -> paymentItem.getCardholder().equals(payment.getCardholder()))
+                .filter(paymentItem -> paymentItem.getExpiryYear().equals(payment.getExpiryYear()))
+                .filter(paymentItem -> paymentItem.getExpiryMonth().equals(payment.getExpiryMonth()))
+                .filter(paymentItem -> paymentItem.getCvv().equals(payment.getCvv()))
+                .filter(paymentItem -> paymentItem.getToken().equals(payment.getToken()))
+                .findAny();
+    }
+
     public static boolean arePaymentResponseEqualsRequest(PaymentModel paymentResponse, PaymentModel paymentRequest) {
 
         return paymentResponse.getUserId().equals(paymentRequest.getUserId()) &&
