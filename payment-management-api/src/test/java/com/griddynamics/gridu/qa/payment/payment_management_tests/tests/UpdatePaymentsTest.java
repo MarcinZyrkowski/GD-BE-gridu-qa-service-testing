@@ -14,7 +14,8 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.griddynamics.gridu.qa.payment.steps.PMSteps.*;
-import static com.griddynamics.gridu.qa.payment.test_data.PaymentManagementData.*;
+import static com.griddynamics.gridu.qa.payment.test_data.PaymentManagementData.preparePaymentRequest;
+import static com.griddynamics.gridu.qa.payment.test_data.PaymentManagementData.prepareUpdatedPaymentRequest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
